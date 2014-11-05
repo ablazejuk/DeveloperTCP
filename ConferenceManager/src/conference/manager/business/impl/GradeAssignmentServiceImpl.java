@@ -11,11 +11,6 @@ public class GradeAssignmentServiceImpl implements GradeAssignmentService {
 
 	private Database database;
 
-	private Database database;
-
-	/**
-	 *  
-	 */
 	public void GradeAssignmentServiceImpl(Database database) {
 
 	}
@@ -36,7 +31,7 @@ public class GradeAssignmentServiceImpl implements GradeAssignmentService {
 	/**
 	 * @see conference.manager.business.GradeAssignmentService#assignGrade(paper : Paper, reviewer :Reviewer)()
 	 */
-	public void assignGrade(paper : Paper, reviewer :Reviewer)() {
+	public void assignGrade(Paper paper, Reviewer reviewer) {
 
 	}
 

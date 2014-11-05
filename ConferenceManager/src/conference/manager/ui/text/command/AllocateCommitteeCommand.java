@@ -2,8 +2,11 @@ package conference.manager.ui.text.command;
 
 import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.PaperSelectionService;
+
 import java.util.List;
+
 import conference.manager.business.domain.Conference;
+import conference.manager.business.domain.Paper;
 
 public class AllocateCommitteeCommand implements Command, CommitteeAllocationService {
 

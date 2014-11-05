@@ -25,7 +25,7 @@ public class AssignGradeCommand implements Command {
 	/**
 	 *  
 	 */
-	private showPapers(List<Paper> papersToAssignGrade) {
+	private void showPapers(List<Paper> papersToAssignGrade) {
 
 	}
 
@@ -47,8 +47,8 @@ public class AssignGradeCommand implements Command {
 		return null;
 	}
 
-	private int {-3..3} requestGrade() {
-		return null;
+	private int requestGrade() {
+		return 0;
 	}
 
 }

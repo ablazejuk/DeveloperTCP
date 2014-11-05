@@ -8,9 +8,7 @@ import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
 import java.util.List;
 
-public class CommitteeAllocationServiceImpl implements CommitteeAllocationService, CommitteeAllocationService, PaperSelectionService {
-
-	private Database database;
+public class CommitteeAllocationServiceImpl implements CommitteeAllocationService, PaperSelectionService {
 
 	private Database database;
 
@@ -25,7 +23,7 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 	/**
 	 *  
 	 */
-	public CommmitteeAllocationServiceImpl(Database database) {
+	public CommitteeAllocationServiceImpl(Database database) {
 
 	}
 

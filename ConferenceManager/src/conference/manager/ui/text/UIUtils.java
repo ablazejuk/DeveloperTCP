@@ -10,7 +10,7 @@ public class UIUtils {
 
 	private static UIUtils instance;
 
-	public static final UIUtils INSTANCE = new UIUtilsnull();
+	public static final UIUtils INSTANCE = new UIUtils();
 
 	private UIUtils() {
 

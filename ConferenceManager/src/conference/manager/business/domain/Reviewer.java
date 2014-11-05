@@ -13,16 +13,10 @@ public class Reviewer extends Researcher implements Comparable {
 		return false;
 	}
 
-	/**
-	 *  
-	 */
 	private boolean hasInterestIn(ResearchTopic topic) {
 		return false;
 	}
 
-	/**
-	 *  
-	 */
 	private boolean hasPaperToReviewInConference(Conference conference) {
 		return false;
 	}
@@ -35,13 +29,6 @@ public class Reviewer extends Researcher implements Comparable {
 
 	}
 
-	public int compareTo(Reviewer Reviewer) {
-		return 0;
-	}
-
-	/**
-	 *  
-	 */
 	public boolean isAbleToReview(Paper paper) {
 		return false;
 	}
@@ -50,11 +37,9 @@ public class Reviewer extends Researcher implements Comparable {
 
 	}
 
-
-	/**
-	 * @see java.lang.Comparable#compareTo(java.lang.T)
-	 */
-	public int compareTo(T o) {
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

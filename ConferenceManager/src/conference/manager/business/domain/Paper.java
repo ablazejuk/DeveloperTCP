@@ -19,11 +19,7 @@ public class Paper {
 
 	private ResearchTopic researchTopic;
 
-	private Conference conference;
-
 	private Researcher researcher;
-
-	private ResearchTopic researchTopic;
 
 	private PaperGrade paperGrade;
 
@@ -81,7 +77,7 @@ public class Paper {
 
 	}
 
-	public void addGrade(Reviewer reviewer, int {-3..3} grade) {
+	public void addGrade(Reviewer reviewer, int grade) {
 
 	}
 

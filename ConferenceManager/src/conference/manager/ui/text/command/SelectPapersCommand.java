@@ -3,8 +3,11 @@ package conference.manager.ui.text.command;
 import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.PaperSelectionService;
 import conference.manager.ui.text.ConferenceManagerTextUI;
+
 import java.util.List;
+
 import conference.manager.business.domain.Conference;
+import conference.manager.business.domain.Paper;
 
 public class SelectPapersCommand implements Command, PaperSelectionService {
 
@@ -33,14 +36,7 @@ public class SelectPapersCommand implements Command, PaperSelectionService {
 	/**
 	 *  
 	 */
-	private SelectPapersCommand(ConferenceManagerTextUI ConferenceManagerInterface) {
-
-	}
-
-	/**
-	 *  
-	 */
-	private showAcceptedPapers(List<Conference> selectedConference) {
+	private void showAcceptedPapers(List<Conference> selectedConference) {
 
 	}
 
