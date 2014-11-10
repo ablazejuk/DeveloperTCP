@@ -12,6 +12,10 @@ public class Database {
 	private List<Conference> allocatedConferences;
 
 	private List<Conference> unallocatedConferences;
+	
+	// New variable *conferences*
+	// Since the conferences won't change during the program, it is wise to store the data. 
+	private List<Conference> conferences;
 
 	private List<University> universities;
 
@@ -39,31 +43,31 @@ public class Database {
 	}
 
 	public List<University> getUniversities() {
-		return null;
+		return universities;
 	}
 
 	public List<Conference> getConferences() {
-		return null;
+		return conferences;
 	}
 
 	public List<Conference> getUnallocatedConferences() {
-		return null;
+		return unallocatedConferences;
 	}
 
 	public List<Paper> getUngradedPapers() {
-		return null;
+		return ungradedPapers;
 	}
 
 	public List<ResearchTopic> getResearchTopics() {
-		return null;
+		return researchTopics;
 	}
 
 	public List<Researcher> getResearchers() {
-		return null;
+		return researchers;
 	}
 
 	public List<Paper> getPapers() {
-		return null;
+		return papers;
 	}
 
 	public void setAllocated(Conference conference) {

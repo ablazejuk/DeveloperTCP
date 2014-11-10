@@ -15,7 +15,7 @@ public class Conference {
 
 	private List<Paper> ungradedPapers;
 
-	private List<Paper> unallocatedPaper;
+	private List<Paper> unallocatedPapers;
 
 	private List<Reviewer> reviewers;
 
@@ -45,30 +45,30 @@ public class Conference {
 	}
 
 	public List<Paper> getGradedPapers() {
-		return null;
+		return gradedPapers;
 	}
 
 	public List<Paper> getUngradedPapers() {
-		return null;
+		return ungradedPapers;
 	}
 
 	public List<Paper> getUnallocatedPapers() {
-		return null;
+		return unallocatedPapers;
 	}
 
 	/**
 	 *  
 	 */
 	public String getAcronym() {
-		return null;
+		return acronym;
 	}
 
 	public List<Researcher> getCommitteeMembers() {
-		return null;
+		return committeeMembers;
 	}
 
 	public List<Reviewer> getReviewers() {
-		return null;
+		return reviewers;
 	}
 
 }
