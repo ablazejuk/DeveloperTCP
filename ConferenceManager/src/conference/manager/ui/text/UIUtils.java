@@ -2,22 +2,15 @@ package conference.manager.ui.text;
 
 import java.util.Date;
 
-/**
- * 
- * 
- */
 public class UIUtils {
-
-	private static UIUtils instance;
 
 	public static final UIUtils INSTANCE = new UIUtils();
 
 	private UIUtils() {
-
 	}
 
 	public UIUtils getInstance() {
-		return null;
+		return UIUtils.INSTANCE;
 	}
 
 	public String propertyToString(String field, Date value) {

@@ -15,48 +15,32 @@ public class Researcher {
 
 	private List<Paper> papers;
 
-	private Collection<Paper> paper;
-
-	private Collection<ResearchTopic> researchTopic;
-
 	private Conference conference;
 
 	private University university;
 
-	/**
-	 *  
-	 */
 	public int getId() {
-		return 0;
+		return this.id;
 	}
 
-	/**
-	 *  
-	 */
 	public String getName() {
-		return null;
+		return this.name;
 	}
 
-	/**
-	 *  
-	 */
 	public University getAffiliation() {
-		return null;
+		return this.affiliation;
 	}
 
-	/**
-	 *  
-	 */
 	public List<ResearchTopic> getInterests() {
-		return null;
+		return this.interests;
 	}
 
 	public List<Paper> getPapers() {
-		return null;
+		return this.papers;
 	}
 
 	public boolean equals(Researcher researcher) {
-		return false;
+		return this.id == researcher.getId();
 	}
 
 }

@@ -3,13 +3,17 @@ package conference.manager.business.domain;
 public class University {
 
 	private String name;
+	
+	public University(String name) {
+		this.name = name;
+	}
 
 	public String getName() {
-		return null;
+		return this.name;
 	}
 
 	public boolean equals(University that) {
-		return false;
+		return (this.name).equals(that.name);
 	}
 
 }

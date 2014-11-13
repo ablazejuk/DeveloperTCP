@@ -10,11 +10,11 @@ public class ConferenceManagerTextUI implements ConferenceManagerUI {
 
 	private Command command;
 
-	/**
-	 *  
-	 */
+	public ConferenceManagerTextUI() {
+	}
+	
 	public void createAndShow() {
-
+		
 	}
 
 }
