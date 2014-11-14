@@ -7,33 +7,26 @@ import java.util.List;
 
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
+import conference.manager.ui.text.ConferenceManagerTextUI;
 
-public class AllocateCommitteeCommand implements Command, CommitteeAllocationService {
+public class AllocateCommitteeCommand extends Command {
 
-	/**
-	 *  
-	 */
+	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface) {
+		this.ConferenceManagerInterface = ConferenceManagerInterface;
+	}
+	
 	private void showUnallocatedConferences(List<Conference> unallocatedConferences) {
 
 	}
 
-	/**
-	 *  
-	 */
 	private Conference selectConference() {
 		return null;
 	}
 
-	/**
-	 *  
-	 */
 	private int askNumberReviewers() {
 		return 0;
 	}
 
-	/**
-	 *  
-	 */
 	private void showAllocatedPapers(List<Paper> allocatedPapers) {
 
 	}
@@ -42,13 +35,9 @@ public class AllocateCommitteeCommand implements Command, CommitteeAllocationSer
 
 	}
 
-	/**
-	 *  
-	 */
 	public void execute() {
 
 	}
-
 
 	/**
 	 * @see conference.manager.business.CommitteeAllocationService#getUnallocatedConferences()
@@ -57,14 +46,12 @@ public class AllocateCommitteeCommand implements Command, CommitteeAllocationSer
 		return null;
 	}
 
-
 	/**
 	 * @see conference.manager.business.CommitteeAllocationService#getUnallocatedPapers(conference.manager.business.domain.Conference)
 	 */
 	public List<Paper> getUnallocatedPapers(Conference conference) {
 		return null;
 	}
-
 
 	/**
 	 * @see conference.manager.business.CommitteeAllocationService#allocatePapers(, conference.manager.business.domain.Conference, int)

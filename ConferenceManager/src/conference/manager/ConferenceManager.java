@@ -1,12 +1,12 @@
 package conference.manager;
 
+import conference.manager.ui.ConferenceManagerUI;
 import conference.manager.ui.text.ConferenceManagerTextUI;
 
 public class ConferenceManager {
 
-	public void main(int args, String[] argv) {
-		ConferenceManagerTextUI conferenceManagerText = new ConferenceManagerTextUI();
+	public static void main(String[] args) {
+		ConferenceManagerUI conferenceManagerText = new ConferenceManagerTextUI();
 		conferenceManagerText.createAndShow();
 	}
-
 }

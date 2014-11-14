@@ -1,7 +1,5 @@
 package conference.manager.ui.text.command;
 
-import conference.manager.business.CommitteeAllocationService;
-import conference.manager.business.PaperSelectionService;
 import conference.manager.ui.text.ConferenceManagerTextUI;
 
 import java.util.List;
@@ -9,22 +7,20 @@ import java.util.List;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 
-public class SelectPapersCommand implements Command, PaperSelectionService {
+public class SelectPapersCommand extends Command {
 
 	public SelectPapersCommand(ConferenceManagerTextUI ConferenceManagerInterface) {
-
+		this.ConferenceManagerInterface = ConferenceManagerInterface;
+	}
+	
+	public SelectPapersCommand() {
+		
 	}
 
-	/**
-	 *  
-	 */
 	public void execute() {
 
 	}
 
-	/**
-	 *  
-	 */
 	private void showConferences(List<Conference> conferences) {
 
 	}
@@ -33,9 +29,6 @@ public class SelectPapersCommand implements Command, PaperSelectionService {
 		return null;
 	}
 
-	/**
-	 *  
-	 */
 	private void showAcceptedPapers(List<Conference> selectedConference) {
 
 	}
@@ -48,7 +41,6 @@ public class SelectPapersCommand implements Command, PaperSelectionService {
 
 	}
 
-
 	/**
 	 * @see conference.manager.business.PaperSelectionService#getConferences()
 	 */
@@ -56,14 +48,12 @@ public class SelectPapersCommand implements Command, PaperSelectionService {
 		return null;
 	}
 
-
 	/**
 	 * @see conference.manager.business.PaperSelectionService#getAcceptedPapers(conference.manager.business.domain.Conference)
 	 */
 	public List<Paper> getAcceptedPapers(Conference conference) {
 		return null;
 	}
-
 
 	/**
 	 * @see conference.manager.business.PaperSelectionService#getRejectedPapers(conference.manager.business.domain.Conference)

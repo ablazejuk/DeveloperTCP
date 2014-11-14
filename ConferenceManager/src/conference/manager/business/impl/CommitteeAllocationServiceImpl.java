@@ -8,7 +8,7 @@ import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
 import java.util.List;
 
-public class CommitteeAllocationServiceImpl implements CommitteeAllocationService, PaperSelectionService {
+public class CommitteeAllocationServiceImpl implements CommitteeAllocationService {
 
 	private Database database;
 
@@ -20,11 +20,8 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 
 	}
 
-	/**
-	 *  
-	 */
 	public CommitteeAllocationServiceImpl(Database database) {
-
+		this.database = database;
 	}
 
 	public List<Paper> allocatePapers(List<Paper> papers, Conference conference, int numReviewers) {
@@ -39,14 +36,12 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 		return null;
 	}
 
-
 	/**
 	 * @see conference.manager.business.PaperSelectionService#getConferences()
 	 */
 	public List<Conference> getConferences() {
 		return null;
 	}
-
 
 	/**
 	 * @see conference.manager.business.PaperSelectionService#getAcceptedPapers(conference.manager.business.domain.Conference)
