@@ -1,7 +1,6 @@
 package conference.manager.business.domain;
 
 import java.util.List;
-import java.util.Collection;
 
 public class Paper {
 
@@ -18,67 +17,124 @@ public class Paper {
 	private List<PaperGrade> grades;
 
 	private ResearchTopic researchTopic;
-
-	private Researcher researcher;
-
-	private PaperGrade paperGrade;
-
-	private Collection<Reviewer> reviewer;
+	
+	private boolean allocated;
+	
+	private boolean graded;
+	
+	private boolean accepted;
 
 	/**
 	 *  
 	 */
 	public int getId() {
-		return 0;
+		return id;
 	}
 
 	/**
 	 *  
 	 */
 	public String getTitle() {
-		return null;
+		return title;
 	}
 
 	/**
 	 *  
 	 */
 	public float getAverageGrade() {
-		return 0;
+		float sum = 0;
+		for(PaperGrade grade : grades){
+			sum += grade.getGrade();
+		}
+		return sum/grades.size();
 	}
 
 	/**
 	 *  
 	 */
 	public ResearchTopic getResearchTopic() {
-		return null;
+		return researchTopic;
 	}
 
 	public List<Reviewer> getReviewers() {
-		return null;
+		return reviewers;
 	}
 
 	public Conference getConference() {
-		return null;
+		return conference;
+	}
+	
+	public Researcher getAuthor(){
+		return author;
 	}
 
 	public boolean isAllocated() {
-		return false;
+		return allocated;
 	}
 
 	public boolean isGraded() {
-		return false;
+		return graded;
 	}
 
 	public boolean isAccepted() {
-		return false;
+		return accepted;
 	}
 
 	public void addReviewers(List<Reviewer> reviewers) {
-
+		this.reviewers = reviewers;
 	}
 
 	public void addGrade(Reviewer reviewer, int grade) {
-
+		PaperGrade paperGrade = new PaperGrade(reviewer, grade);
+		grades.add(paperGrade);
 	}
 
+	public boolean isValidId(int id){
+		if(id > 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isValidTitle(String title){
+		if(titleIsNotNull(title) && titleIsNotEmpty(title))
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean titleIsNotNull(String title){
+		if(title != null)
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean titleIsNotEmpty(String title){
+		if(!title.isEmpty())
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isValidAuthor(Researcher author){
+		if(author != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isValidConference(Conference conference){
+		if(conference != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isValidResearchTopic(ResearchTopic researchTopic){
+		if(researchTopic != null)
+			return true;
+		else
+			return false;
+	}
 }
