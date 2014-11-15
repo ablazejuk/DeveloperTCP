@@ -2,6 +2,13 @@ package conference.manager.ui.text;
 
 import java.util.Scanner;
 
+import conference.manager.business.CommitteeAllocationService;
+import conference.manager.business.GradeAssignmentService;
+import conference.manager.business.PaperSelectionService;
+import conference.manager.business.impl.CommitteeAllocationServiceImpl;
+import conference.manager.business.impl.GradeAssignmentServiceImpl;
+import conference.manager.business.impl.PaperSelectionServiceImpl;
+import conference.manager.data.Database;
 import conference.manager.ui.text.command.AllocateCommitteeCommand;
 import conference.manager.ui.ConferenceManagerUI;
 import conference.manager.ui.text.command.SelectPapersCommand;
@@ -15,6 +22,12 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	private static final int COMMAND_SELECTION = 3;
 	
 	public ConferenceManagerTextUI() {
+		Database database = new Database();
+		
+		CommitteeAllocationService committeeAllocationService = new CommitteeAllocationServiceImpl(database);
+		GradeAssignmentService gradeAssignmentService = new GradeAssignmentServiceImpl();
+		PaperSelectionService paperSelectionService = new PaperSelectionServiceImpl(database);
+		
 		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this);
 		this.assignGradeCommand = new AssignGradeCommand(this);
 		this.selectPapersCommand = new SelectPapersCommand(this);

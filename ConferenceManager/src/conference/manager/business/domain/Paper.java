@@ -18,47 +18,36 @@ public class Paper {
 	private List<PaperGrade> grades;
 
 	private ResearchTopic researchTopic;
+	
+	public Paper(int id, String title, Researcher author, ResearchTopic researchTopic) {
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.researchTopic = researchTopic;
+	}
 
-	private Researcher researcher;
-
-	private PaperGrade paperGrade;
-
-	private Collection<Reviewer> reviewer;
-
-	/**
-	 *  
-	 */
 	public int getId() {
-		return 0;
+		return this.id;
 	}
 
-	/**
-	 *  
-	 */
 	public String getTitle() {
-		return null;
+		return this.title;
 	}
 
-	/**
-	 *  
-	 */
 	public float getAverageGrade() {
 		return 0;
 	}
 
-	/**
-	 *  
-	 */
 	public ResearchTopic getResearchTopic() {
-		return null;
+		return this.researchTopic;
 	}
 
 	public List<Reviewer> getReviewers() {
-		return null;
+		return this.reviewers;
 	}
 
 	public Conference getConference() {
-		return null;
+		return this.conference;
 	}
 
 	public boolean isAllocated() {
@@ -79,6 +68,10 @@ public class Paper {
 
 	public void addGrade(Reviewer reviewer, int grade) {
 
+	}
+	
+	public void addConference(Conference conference) {
+		this.conference = conference;
 	}
 
 }

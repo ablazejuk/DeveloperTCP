@@ -16,8 +16,22 @@ public class Researcher {
 	private List<Paper> papers;
 
 	private Conference conference;
-
-	private University university;
+	
+	public Researcher(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers, Conference conference) {
+		this.id = id;
+		this.name = name;
+		this.affiliation = affiliation;
+		this.interests = interests;
+		this.papers = papers;
+		this.conference = conference;
+	}
+	
+	public Researcher(int id, String name, University affiliation, List<ResearchTopic> interests) {
+		this.id = id;
+		this.name = name;
+		this.affiliation = affiliation;
+		this.interests = interests;
+	}
 
 	public int getId() {
 		return this.id;
@@ -42,5 +56,8 @@ public class Researcher {
 	public boolean equals(Researcher researcher) {
 		return this.id == researcher.getId();
 	}
-
+	
+	public void addPaper(Paper paper) {
+		this.papers.add(paper);
+	}
 }

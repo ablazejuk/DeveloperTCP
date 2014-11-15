@@ -15,15 +15,15 @@ public class Conference {
 
 	private List<Paper> ungradedPapers;
 
-	private List<Paper> unallocatedPapers;
+	private List<Paper> unallocatedPapersICSE;
 
 	private List<Reviewer> reviewers;
-
-	private Collection<Paper> paper;
-
-	private Collection<Reviewer> reviewer;
-
-	private Researcher researcher;
+	
+	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapersICSE) {
+		this.acronym = acronym;
+		this.committeeMembers = committeeMembers;
+		this.unallocatedPapersICSE = unallocatedPapersICSE;
+	}
 
 	public boolean isAllocated() {
 		return false;
@@ -37,9 +37,6 @@ public class Conference {
 
 	}
 
-	/**
-	 *  
-	 */
 	public void assignGrade(Paper paper, Reviewer reviewer, int grade) {
 
 	}
@@ -52,8 +49,8 @@ public class Conference {
 		return ungradedPapers;
 	}
 
-	public List<Paper> getUnallocatedPapers() {
-		return unallocatedPapers;
+	public List<Paper> getunallocatedPapersICSE() {
+		return unallocatedPapersICSE;
 	}
 
 	/**

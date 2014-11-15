@@ -28,7 +28,7 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 		return null;
 	}
 
-	public List<Paper> getUnallocatedPapers(Conference conference) {
+	public List<Paper> getunallocatedPapersICSE(Conference conference) {
 		return null;
 	}
 

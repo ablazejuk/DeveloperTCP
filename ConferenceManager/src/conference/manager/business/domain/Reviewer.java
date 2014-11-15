@@ -6,11 +6,14 @@ import java.util.Collection;
 public class Reviewer extends Researcher implements Comparable {
 
 	private List<Paper> papersToReview;
-
-	private Collection<Paper> paper;
+	
+	public Reviewer(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers, Conference conference, List<Paper> papersToReview) {
+		super(id, name, affiliation, interests, papers, conference);
+		this.papersToReview = papersToReview;
+	}
 
 	private boolean hasSameAffiliation(Researcher researcher) {
-		return false;
+		return this.getAffiliation().equals(researcher.getAffiliation());
 	}
 
 	private boolean hasInterestIn(ResearchTopic topic) {

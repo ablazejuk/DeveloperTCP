@@ -47,9 +47,9 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	/**
-	 * @see conference.manager.business.CommitteeAllocationService#getUnallocatedPapers(conference.manager.business.domain.Conference)
+	 * @see conference.manager.business.CommitteeAllocationService#getunallocatedPapersICSE(conference.manager.business.domain.Conference)
 	 */
-	public List<Paper> getUnallocatedPapers(Conference conference) {
+	public List<Paper> getunallocatedPapersICSE(Conference conference) {
 		return null;
 	}
 

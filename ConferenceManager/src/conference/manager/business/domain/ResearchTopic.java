@@ -4,18 +4,16 @@ public class ResearchTopic {
 
 	private String name;
 
-	/**
-	 *  
-	 */
-	public void getName() {
-
+	public ResearchTopic(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 
-	/**
-	 *  
-	 */
 	public boolean equals(ResearchTopic that) {
-		return false;
+		return this.name.equals(that.name);
 	}
 
 }
