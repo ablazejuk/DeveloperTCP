@@ -95,4 +95,8 @@ public class Conference {
 	public boolean equals(Conference conference) {
 		return this.acronym.equals(conference.getAcronym());
 	}
+	
+	public String toString() {
+		return this.acronym;
+	}
 }

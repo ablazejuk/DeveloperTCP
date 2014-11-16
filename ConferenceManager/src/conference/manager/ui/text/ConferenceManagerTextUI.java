@@ -1,10 +1,12 @@
 package conference.manager.ui.text;
 
+import java.util.List;
 import java.util.Scanner;
 
 import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.GradeAssignmentService;
 import conference.manager.business.PaperSelectionService;
+import conference.manager.business.domain.Conference;
 import conference.manager.business.impl.CommitteeAllocationServiceImpl;
 import conference.manager.business.impl.GradeAssignmentServiceImpl;
 import conference.manager.business.impl.PaperSelectionServiceImpl;
@@ -24,11 +26,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	public ConferenceManagerTextUI() {
 		Database database = new Database();
 		
-		CommitteeAllocationService committeeAllocationService = new CommitteeAllocationServiceImpl(database);
-		GradeAssignmentService gradeAssignmentService = new GradeAssignmentServiceImpl();
-		PaperSelectionService paperSelectionService = new PaperSelectionServiceImpl(database);
-		
-		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this);
+		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this, database);
 		this.assignGradeCommand = new AssignGradeCommand(this);
 		this.selectPapersCommand = new SelectPapersCommand(this);
 	}
@@ -61,6 +59,8 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 			option = reader.nextInt();
 		} while(!this.isValid(option));
 		
+		System.out.println();
+		
 		return option;
 	}
 	
@@ -88,6 +88,14 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 			break;
 		default:
 			assert false;
+		}
+	}
+	
+	public void showUnallocatedConferences(List<Conference> unallocatedConferences) {		
+		System.out.println("*Unallocated Conferences*");
+		
+		for (Conference c : unallocatedConferences) {
+			System.out.println(c);
 		}
 	}
 }

@@ -28,40 +28,26 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 		return null;
 	}
 
-	public List<Paper> getunallocatedPapersICSE(Conference conference) {
-		return null;
-	}
-
+	@Override
 	public List<Conference> getUnallocatedConferences() {
-		return null;
+		return this.database.getUnallocatedConferences();
 	}
 
-	/**
-	 * @see conference.manager.business.PaperSelectionService#getConferences()
-	 */
 	public List<Conference> getConferences() {
 		return null;
 	}
 
-	/**
-	 * @see conference.manager.business.PaperSelectionService#getAcceptedPapers(conference.manager.business.domain.Conference)
-	 */
 	public List<Paper> getAcceptedPapers(Conference conference) {
 		return null;
 	}
 
-
-	/**
-	 * @see conference.manager.business.PaperSelectionService#getRejectedPapers(conference.manager.business.domain.Conference)
-	 */
 	public List<Paper> getRejectedPapers(Conference conference) {
 		return null;
 	}
 
 	@Override
 	public List<Paper> getUnallocatedPapers(Conference conference) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.database.getUnallocatedPapers();
 	}
 
 }

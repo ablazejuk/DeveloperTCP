@@ -1,21 +1,45 @@
 package conference.manager.ui.text.command;
 
-import conference.manager.business.CommitteeAllocationService;
-import conference.manager.business.PaperSelectionService;
-
 import java.util.List;
 
+import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
+import conference.manager.business.impl.CommitteeAllocationServiceImpl;
+import conference.manager.data.Database;
 import conference.manager.ui.text.ConferenceManagerTextUI;
 
 public class AllocateCommitteeCommand extends Command {
-
-	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface) {
+	
+	private CommitteeAllocationService committeeAllocationService;
+	
+	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface, Database database) {
 		this.ConferenceManagerInterface = ConferenceManagerInterface;
+		this.committeeAllocationService = new CommitteeAllocationServiceImpl(database);
+	}
+
+	public void execute() {
+		List<Conference> unallocatedConferences = this.getUnallocatedConferences();
+		this.ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
+	}
+
+	public List<Conference> getUnallocatedConferences() {
+		return this.committeeAllocationService.getUnallocatedConferences();
+	}
+
+	public List<Paper> getUnallocatedPapers(Conference conference) {
+		return conference.getUnallocatedPapers();
+	}
+
+	public List<Paper> allocatePapers(List<Paper> papers, Conference conference, int numReviewers) {
+		return null;
 	}
 	
-	private void showUnallocatedConferences(List<Conference> unallocatedConferences) {
+	private void showAllocatedPapers(List<Paper> allocatedPapers) {
+
+	}
+
+	private void printLog(List<Paper> allocatedPapers) {
 
 	}
 
@@ -26,38 +50,4 @@ public class AllocateCommitteeCommand extends Command {
 	private int askNumberReviewers() {
 		return 0;
 	}
-
-	private void showAllocatedPapers(List<Paper> allocatedPapers) {
-
-	}
-
-	private void printLog(List<Paper> allocatedPapers) {
-
-	}
-
-	public void execute() {
-
-	}
-
-	/**
-	 * @see conference.manager.business.CommitteeAllocationService#getUnallocatedConferences()
-	 */
-	public List<Conference> getUnallocatedConferences() {
-		return null;
-	}
-
-	/**
-	 * @see conference.manager.business.CommitteeAllocationService#getunallocatedPapersICSE(conference.manager.business.domain.Conference)
-	 */
-	public List<Paper> getunallocatedPapersICSE(Conference conference) {
-		return null;
-	}
-
-	/**
-	 * @see conference.manager.business.CommitteeAllocationService#allocatePapers(, conference.manager.business.domain.Conference, int)
-	 */
-	public List<Paper> allocatePapers(List<Paper> papers, Conference conference, int numReviewers) {
-		return null;
-	}
-
 }
