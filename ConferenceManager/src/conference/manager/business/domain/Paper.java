@@ -136,4 +136,8 @@ public class Paper {
 		else
 			return false;
 	}
+	
+	public boolean equals(Paper paper) {
+		return this.id == paper.getId();
+	}
 }

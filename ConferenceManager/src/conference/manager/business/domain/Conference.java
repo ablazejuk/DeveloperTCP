@@ -1,5 +1,6 @@
 package conference.manager.business.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conference {
@@ -26,6 +27,13 @@ public class Conference {
 		this.acronym = acronym;
 		this.committeeMembers = committeeMembers;
 		this.unallocatedPapers = unallocatedPapers;
+		
+		this.ungradedPapers = new ArrayList<>();
+		this.gradedPapers = new ArrayList<>();
+		this.reviewers = new ArrayList<>();
+		
+		this.allocated = false;
+		this.graded = false;
 	}
 
 	public boolean isAllocated() {

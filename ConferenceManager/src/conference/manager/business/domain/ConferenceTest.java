@@ -41,8 +41,13 @@ public class ConferenceTest {
 		
 		Conference c1 = conferences.get(0);
 		Conference c2 = conferences.get(1);
+		Conference c3 = conferences.get(2);
 		
 		assertFalse(c1.equals(c2));
 		assertTrue(c1.equals(c1));
+		assertFalse(c2.equals(c3));
+		assertTrue(c3.equals(c3));
+		assertTrue(c2.equals(c2));
+		assertFalse(c1.equals(c3));
 	}
 }

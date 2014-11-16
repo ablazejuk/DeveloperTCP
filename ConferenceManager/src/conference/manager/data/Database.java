@@ -21,8 +21,10 @@ public class Database {
 	private List<ResearchTopic> researchTopics;
 
 	private List<Researcher> researchers;
+	
+	private List<Paper> unallocatedPapers;
 
-	private List<Paper> papers;
+	private List<Paper> gradedPapers;
 
 	private List<Paper> ungradedPapers;
 
@@ -32,8 +34,9 @@ public class Database {
 		this.universities = new ArrayList<>();
 		this.researchTopics = new ArrayList<>();
 		this.researchers = new ArrayList<>();
-		this.papers = new ArrayList<>();
+		this.unallocatedPapers = new ArrayList<>();
 		this.ungradedPapers = new ArrayList<>();
+		this.gradedPapers = new ArrayList<>();
 		
 		ResearchTopic softwareProductLines      = new ResearchTopic("Software Product Lines");
 		ResearchTopic softwareReuse             = new ResearchTopic("Software Reuse");
@@ -211,17 +214,17 @@ public class Database {
 		this.researchers.add(pedro);
 		this.researchers.add(carlos);
 		
-		this.ungradedPapers.add(couplingAndCoesion);
-		this.ungradedPapers.add(designPatterns);
-		this.ungradedPapers.add(aspectJ);
-		this.ungradedPapers.add(featureModel);
-		this.ungradedPapers.add(architectureRecovery);
-		this.ungradedPapers.add(functionalTesting);
-		this.ungradedPapers.add(cots);
-		this.ungradedPapers.add(pointcut);
-		this.ungradedPapers.add(productDerivation);
-		this.ungradedPapers.add(architectureComformance);
-		this.ungradedPapers.add(structuralTesting);
+		this.unallocatedPapers.add(couplingAndCoesion);
+		this.unallocatedPapers.add(designPatterns);
+		this.unallocatedPapers.add(aspectJ);
+		this.unallocatedPapers.add(featureModel);
+		this.unallocatedPapers.add(architectureRecovery);
+		this.unallocatedPapers.add(functionalTesting);
+		this.unallocatedPapers.add(cots);
+		this.unallocatedPapers.add(pointcut);
+		this.unallocatedPapers.add(productDerivation);
+		this.unallocatedPapers.add(architectureComformance);
+		this.unallocatedPapers.add(structuralTesting);
 	}
 
 	public List<University> getUniversities() {
@@ -229,38 +232,66 @@ public class Database {
 	}
 
 	public List<Conference> getUnallocatedConferences() {
-		return unallocatedConferences;
+		return this.unallocatedConferences;
 	}
 
-	public List<Paper> getUngradedPapers() {
-		return ungradedPapers;
+	public List<Conference> geAllocatedConferences() {
+		return this.allocatedConferences;
 	}
-
+	
 	public List<ResearchTopic> getResearchTopics() {
-		return researchTopics;
+		return this.researchTopics;
 	}
 
 	public List<Researcher> getResearchers() {
-		return researchers;
+		return this.researchers;
+	}
+	
+	public List<Paper> getUnallocatedPapers() {
+		return this.unallocatedPapers;
 	}
 
-	public List<Paper> getPapers() {
-		return papers;
+	public List<Paper> getUngradedPapers() {
+		return this.ungradedPapers;
 	}
-
+	
+	public List<Paper> getGradedPapers() {
+		return this.gradedPapers;
+	}
+	
 	public void setAllocated(Conference conference) {
 		conference.setAllocated(true);
-		for (Conference c : this.unallocatedConferences) {
-			//if (conference.)
+		this.allocatedConferences.add(conference);
+		
+		List<Conference> newUnallocatedConferences = new ArrayList<>();
+		
+		for (int i = 0; i < this.unallocatedConferences.size(); i++) {
+			if (this.unallocatedConferences.get(i).equals(conference)) {
+				this.unallocatedConferences.remove(i);
+			}
 		}
+		
+		this.unallocatedConferences = newUnallocatedConferences;
 	}
 
 	public void setUngraded(Paper paper) {
-
+		this.ungradedPapers.add(paper);
+		
+		for (int i = 0; i < this.unallocatedPapers.size(); i++) {
+			if (this.unallocatedPapers.get(i).equals(paper)) {
+				this.unallocatedPapers.remove(i);
+			}
+		}
 	}
 
 	public void setGraded(Paper paper) {
-
+		this.gradedPapers.add(paper);
+		
+		for (int i = 0; i < this.ungradedPapers.size(); i++) {
+			if (this.ungradedPapers.get(i).equals(paper)) {
+				this.ungradedPapers.remove(i);
+			}
+		}
 	}
 
 }
