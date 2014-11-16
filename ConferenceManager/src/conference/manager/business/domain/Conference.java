@@ -1,7 +1,6 @@
 package conference.manager.business.domain;
 
 import java.util.List;
-import java.util.Collection;
 
 public class Conference {
 
@@ -19,6 +18,14 @@ public class Conference {
 
 	private List<Reviewer> reviewers;
 	
+	private boolean allocated;
+	
+	private boolean graded;
+	
+	public Conference() {
+		
+	}
+	
 	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapersICSE) {
 		this.acronym = acronym;
 		this.committeeMembers = committeeMembers;
@@ -26,19 +33,19 @@ public class Conference {
 	}
 
 	public boolean isAllocated() {
-		return false;
+		return allocated;
 	}
 
 	public boolean isGraded() {
-		return false;
+		return graded;
 	}
 
 	public void allocatePaper(Paper paper, List<Reviewer> reviewers) {
-
+		paper.addReviewers(reviewers);
 	}
 
 	public void assignGrade(Paper paper, Reviewer reviewer, int grade) {
-
+		paper.addGrade(reviewer, grade);
 	}
 
 	public List<Paper> getGradedPapers() {
@@ -68,4 +75,53 @@ public class Conference {
 		return reviewers;
 	}
 
+	public Researcher getCoordenator(){
+		return coordenator;
+	}
+	
+	public boolean isValidAcronym(String acronym) {
+		if (!acronymIsNotNull(acronym))
+			return false;
+		else
+			return true;
+	}
+	
+	private boolean acronymIsNotNull(String acronym){
+		if (acronym != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isValidListOfPapers(List<Paper> unallocatedPaper) {
+		if (areValidPapers(unallocatedPaper))
+			return true;
+		else
+			return false;
+	}
+
+	private boolean areValidPapers(List<Paper> unallocatedPaper){
+		for(Paper paper : unallocatedPaper){
+			if(!(paper instanceof List<?>) && paper != null){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean isValidListOfMembers(List<Researcher> members) {
+		if (areValidMembers(members))
+			return true;
+		else
+			return false;
+	}
+
+	private boolean areValidMembers(List<Researcher> members){
+		for(Researcher member : members){
+			if(!(member instanceof List<?>) && member != null){
+				return false;
+			}
+		}
+		return true;
+	}
 }
