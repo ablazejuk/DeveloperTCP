@@ -7,7 +7,7 @@ import conference.manager.business.domain.Paper;
 import conference.manager.data.Database;
 import java.util.List;
 
-public class PaperSelectionServiceImpl implements PaperSelectionService, CommitteeAllocationService {
+public class PaperSelectionServiceImpl implements PaperSelectionService {
 
 	private Database database;
 

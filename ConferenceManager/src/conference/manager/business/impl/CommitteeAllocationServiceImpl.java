@@ -58,4 +58,10 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 		return null;
 	}
 
+	@Override
+	public List<Paper> getUnallocatedPapers(Conference conference) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

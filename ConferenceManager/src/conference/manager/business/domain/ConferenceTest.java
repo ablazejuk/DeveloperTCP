@@ -1,13 +1,17 @@
 package conference.manager.business.domain;
 
 import static org.junit.Assert.*;
+
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
-import java.util.*;
+
+import conference.manager.data.Database;
 
 public class ConferenceTest {
 
+	Database database;
 	Conference conference;
 	
 	/**
@@ -15,32 +19,30 @@ public class ConferenceTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		conference = new Conference();
+		this.database = new Database();
 	}
 	
 	/**
 	 * Test method for {@link conference.manager.business.domain.Conference#isValidAcronym(java.lang.String)}.
 	 */
 	@Test
-	public void testAcronymIsNotNull() {
-		assertTrue(conference.isValidAcronym("ICSE"));
+	public void testIsValidAcronym() {
+		List<Conference> conferences = this.database.getUnallocatedConferences();
+		
+		for (Conference c : conferences) {
+			assertTrue(c.isValidAcronym());
+			assertTrue(c.isValidAcronym());
+		}
 	}
 	
 	@Test
-	public void testAcronymIsNull() {
-		assertFalse(conference.isValidAcronym(null));
+	public void testEquals() {
+		List<Conference> conferences = this.database.getUnallocatedConferences();
+		
+		Conference c1 = conferences.get(0);
+		Conference c2 = conferences.get(1);
+		
+		assertFalse(c1.equals(c2));
+		assertTrue(c1.equals(c1));
 	}
-	
-	@Test
-	public void testListOfPapersIsValid(){
-		List<Paper> papers = new ArrayList<Paper>();
-		assertTrue(conference.isValidListOfPapers(papers));
-	}
-	
-	@Test
-	public void testListOfMembersIsValid(){
-		List<Researcher> members = new ArrayList<Researcher>();
-		assertTrue(conference.isValidListOfMembers(members));
-	}
-
 }

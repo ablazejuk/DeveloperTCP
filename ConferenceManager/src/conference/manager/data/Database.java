@@ -27,6 +27,14 @@ public class Database {
 	private List<Paper> ungradedPapers;
 
 	public Database() {
+		this.allocatedConferences = new ArrayList<>();
+		this.unallocatedConferences = new ArrayList<>();
+		this.universities = new ArrayList<>();
+		this.researchTopics = new ArrayList<>();
+		this.researchers = new ArrayList<>();
+		this.papers = new ArrayList<>();
+		this.ungradedPapers = new ArrayList<>();
+		
 		ResearchTopic softwareProductLines      = new ResearchTopic("Software Product Lines");
 		ResearchTopic softwareReuse             = new ResearchTopic("Software Reuse");
 		ResearchTopic modularity                = new ResearchTopic("Modularity");
@@ -39,52 +47,52 @@ public class Database {
 		University usp   = new University("USP");
 		University ufrj  = new University("UFRJ");
 		
-		List<ResearchTopic> joaoInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> joaoInterests = new ArrayList<ResearchTopic>();
 		joaoInterests.add(softwareProductLines);
 		joaoInterests.add(softwareReuse);
 		joaoInterests.add(modularity);
 		
-		List<ResearchTopic> anaInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> anaInterests = new ArrayList<ResearchTopic>();
 		anaInterests.add(softwareArchitecture);
 		anaInterests.add(softwareReuse);
 		anaInterests.add(modularity);
 		
-		List<ResearchTopic> manoelInterests = new ArrayList<ResearchTopic>(2);
+		List<ResearchTopic> manoelInterests = new ArrayList<ResearchTopic>();
 		manoelInterests.add(softwareProductLines);
 		manoelInterests.add(softwareTesting);
 		
-		List<ResearchTopic> joanaInterests = new ArrayList<ResearchTopic>(4);
+		List<ResearchTopic> joanaInterests = new ArrayList<ResearchTopic>();
 		joanaInterests.add(softwareProductLines);
 		joanaInterests.add(softwareReuse);
 		joanaInterests.add(softwareArchitecture);
 		joanaInterests.add(aspectOrientedProgramming);
 		
-		List<ResearchTopic> miguelInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> miguelInterests = new ArrayList<ResearchTopic>();
 		miguelInterests.add(softwareTesting);
 		miguelInterests.add(softwareArchitecture);
 		miguelInterests.add(modularity);
 		
-		List<ResearchTopic> beatrizInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> beatrizInterests = new ArrayList<ResearchTopic>();
 		beatrizInterests.add(aspectOrientedProgramming);
 		beatrizInterests.add(softwareReuse);
 		beatrizInterests.add(softwareTesting);
 		
-		List<ResearchTopic> suzanaInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> suzanaInterests = new ArrayList<ResearchTopic>();
 		suzanaInterests.add(aspectOrientedProgramming);
 		suzanaInterests.add(softwareReuse);
 		suzanaInterests.add(modularity);
 		
-		List<ResearchTopic> natashaInterests = new ArrayList<ResearchTopic>(4);
+		List<ResearchTopic> natashaInterests = new ArrayList<ResearchTopic>();
 		natashaInterests.add(softwareProductLines);
 		natashaInterests.add(softwareReuse);
 		natashaInterests.add(modularity);
 		natashaInterests.add(softwareQuality);
 		
-		List<ResearchTopic> pedroInterests = new ArrayList<ResearchTopic>(2);
+		List<ResearchTopic> pedroInterests = new ArrayList<ResearchTopic>();
 		pedroInterests.add(aspectOrientedProgramming);
 		pedroInterests.add(softwareArchitecture);
 		
-		List<ResearchTopic> carlosInterests = new ArrayList<ResearchTopic>(3);
+		List<ResearchTopic> carlosInterests = new ArrayList<ResearchTopic>();
 		carlosInterests.add(softwareTesting);
 		carlosInterests.add(softwareReuse);
 		carlosInterests.add(modularity);
@@ -216,10 +224,6 @@ public class Database {
 		this.ungradedPapers.add(structuralTesting);
 	}
 
-	public Database(Boolean initData) {
-
-	}
-
 	public List<University> getUniversities() {
 		return universities;
 	}
@@ -245,7 +249,10 @@ public class Database {
 	}
 
 	public void setAllocated(Conference conference) {
-
+		conference.setAllocated(true);
+		for (Conference c : this.unallocatedConferences) {
+			//if (conference.)
+		}
 	}
 
 	public void setUngraded(Paper paper) {

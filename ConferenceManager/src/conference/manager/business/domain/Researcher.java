@@ -1,5 +1,6 @@
 package conference.manager.business.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
 
@@ -31,6 +32,7 @@ public class Researcher {
 		this.name = name;
 		this.affiliation = affiliation;
 		this.interests = interests;
+		this.papers = new ArrayList<>();
 	}
 
 	public int getId() {

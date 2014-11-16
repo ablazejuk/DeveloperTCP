@@ -14,7 +14,7 @@ public class Conference {
 
 	private List<Paper> ungradedPapers;
 
-	private List<Paper> unallocatedPapersICSE;
+	private List<Paper> unallocatedPapers;
 
 	private List<Reviewer> reviewers;
 	
@@ -22,14 +22,10 @@ public class Conference {
 	
 	private boolean graded;
 	
-	public Conference() {
-		
-	}
-	
-	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapersICSE) {
+	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapers) {
 		this.acronym = acronym;
 		this.committeeMembers = committeeMembers;
-		this.unallocatedPapersICSE = unallocatedPapersICSE;
+		this.unallocatedPapers = unallocatedPapers;
 	}
 
 	public boolean isAllocated() {
@@ -56,13 +52,10 @@ public class Conference {
 		return ungradedPapers;
 	}
 
-	public List<Paper> getunallocatedPapersICSE() {
-		return unallocatedPapersICSE;
+	public List<Paper> getUnallocatedPapers() {
+		return unallocatedPapers;
 	}
 
-	/**
-	 *  
-	 */
 	public String getAcronym() {
 		return acronym;
 	}
@@ -79,49 +72,19 @@ public class Conference {
 		return coordenator;
 	}
 	
-	public boolean isValidAcronym(String acronym) {
-		if (!acronymIsNotNull(acronym))
-			return false;
-		else
+	public boolean isValidAcronym() {
+		if (this.acronym != null) {
 			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	private boolean acronymIsNotNull(String acronym){
-		if (acronym != null)
-			return true;
-		else
-			return false;
-	}
-
-	public boolean isValidListOfPapers(List<Paper> unallocatedPaper) {
-		if (areValidPapers(unallocatedPaper))
-			return true;
-		else
-			return false;
-	}
-
-	private boolean areValidPapers(List<Paper> unallocatedPaper){
-		for(Paper paper : unallocatedPaper){
-			if(!(paper instanceof List<?>) && paper != null){
-				return false;
-			}
-		}
-		return true;
+	public void setAllocated(boolean allocated) {
+		this.allocated = allocated;
 	}
 	
-	public boolean isValidListOfMembers(List<Researcher> members) {
-		if (areValidMembers(members))
-			return true;
-		else
-			return false;
-	}
-
-	private boolean areValidMembers(List<Researcher> members){
-		for(Researcher member : members){
-			if(!(member instanceof List<?>) && member != null){
-				return false;
-			}
-		}
-		return true;
+	public boolean equals(Conference conference) {
+		return this.acronym.equals(conference.getAcronym());
 	}
 }
