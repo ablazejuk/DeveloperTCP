@@ -2,7 +2,6 @@ package conference.manager.business.impl;
 
 import conference.manager.business.GradeAssignmentService;
 import conference.manager.business.domain.Reviewer;
-import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.data.Database;
 import java.util.List;
@@ -11,12 +10,12 @@ public class GradeAssignmentServiceImpl implements GradeAssignmentService {
 
 	private Database database;
 
-	public void GradeAssignmentServiceImpl(Database database) {
-
+	public GradeAssignmentServiceImpl(Database database) {
+		this.database = database;
 	}
 
 	public List<Paper> getPapers() {
-		return null;
+		return this.database.getUnallocatedPapers();
 	}
 
 	public List<Reviewer> getReviewers(Paper paper) {

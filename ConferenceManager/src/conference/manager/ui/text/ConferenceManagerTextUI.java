@@ -7,6 +7,7 @@ import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.GradeAssignmentService;
 import conference.manager.business.PaperSelectionService;
 import conference.manager.business.domain.Conference;
+import conference.manager.business.domain.Paper;
 import conference.manager.business.impl.CommitteeAllocationServiceImpl;
 import conference.manager.business.impl.GradeAssignmentServiceImpl;
 import conference.manager.business.impl.PaperSelectionServiceImpl;
@@ -27,7 +28,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		Database database = new Database();
 		
 		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this, database);
-		this.assignGradeCommand = new AssignGradeCommand(this);
+		this.assignGradeCommand = new AssignGradeCommand(this, database);
 		this.selectPapersCommand = new SelectPapersCommand(this);
 	}
 	
@@ -96,6 +97,14 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		
 		for (Conference c : unallocatedConferences) {
 			System.out.println(c);
+		}
+	}
+	
+	public void showUngradedPapers(List<Paper> ungradedPapers){
+		System.out.println("*Ungraded Papers*");
+		
+		for (Paper p : ungradedPapers){
+			System.out.println(p);
 		}
 	}
 }
