@@ -140,4 +140,8 @@ public class Paper {
 	public boolean equals(Paper paper) {
 		return this.id == paper.getId();
 	}
+	
+	public String toString() {
+		return this.title;
+	}
 }
