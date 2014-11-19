@@ -1,6 +1,7 @@
 package conference.manager.ui.text;
 
 import java.util.Date;
+import java.util.Scanner;
 
 public class UIUtils {
 
@@ -34,15 +35,31 @@ public class UIUtils {
 	}
 
 	public Double readDouble(String field) {
-		return null;
+		System.out.println(field);
+	
+		Scanner reader = new Scanner(System.in);
+		double num = reader.nextDouble();
+		reader.close();
+		return num;
 	}
 
 	public Integer readInteger(String field) {
-		return null;
+		System.out.println(field);
+		
+		Scanner reader = new Scanner(System.in);
+		int num = reader.nextInt();
+		reader.close();
+		return num;
 	}
 
 	public Integer readInteger(String field, int min, int max) {
-		return null;
+		System.out.print(field);
+		System.out.println("[" + min + ", " + max + "]");
+		
+		Scanner reader = new Scanner(System.in);
+		int num = reader.nextInt();
+		reader.close();
+		return num;
 	}
 
 	public Long readLong(String field) {
