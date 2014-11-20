@@ -2,7 +2,6 @@ package conference.manager.business.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 
 public class Researcher {
 

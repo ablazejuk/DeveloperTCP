@@ -23,14 +23,22 @@ public class AssignGradeCommand extends Command {
 	public void execute() {
 		List<Paper> ungradedPapers = getPapers();
 		showPapers(ungradedPapers);
+		int paperId;
+		int reviewerId;
 		
-		int paperId = UIUtils.INSTANCE.readInteger("Insert a valid paper id: ");
+		do{
+			paperId = UIUtils.INSTANCE.readInteger("Insert a valid paper id: ");
+		} while(!validatePaperId(ungradedPapers, paperId));
+		
 		Paper selectedPaper = selectPaper(ungradedPapers, paperId);
 		
 		List<Reviewer> reviewers = getReviewers(selectedPaper);
 		showReviewers(reviewers);
 		
-		int reviewerId = UIUtils.INSTANCE.readInteger("Insert a valid reviewer id: ");
+		do{
+			reviewerId = UIUtils.INSTANCE.readInteger("Insert a valid reviewer id: ");
+		} while(!validateReviewerId(reviewers, reviewerId));
+		
 		Reviewer selectedReviewer = selectReviewer(reviewers, reviewerId);
 		
 		int grade = requestGrade();
@@ -75,6 +83,26 @@ public class AssignGradeCommand extends Command {
 
 	private int requestGrade() {
 		return UIUtils.INSTANCE.readInteger("Insert a valid grade: ", -3, 3);
+	}
+	
+	private boolean validatePaperId(List<Paper> papers, int id) {
+		for(Paper p : papers){
+			if(p.getId() == id){
+				return true;
+			}
+		}
+		System.out.println("There is no paper with this id!");
+		return false;
+	}
+	
+	private boolean validateReviewerId(List<Reviewer> reviewers, int id) {
+		for(Reviewer r : reviewers){
+			if(r.getId() == id){
+				return true;
+			}
+		}
+		System.out.println("There is no reviewer with this id!");
+		return false;
 	}
 
 }
