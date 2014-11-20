@@ -3,8 +3,6 @@ package conference.manager.business.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.SliderUI;
-
 public class Conference {
 
 	private String acronym;
@@ -21,10 +19,6 @@ public class Conference {
 
 	private List<Reviewer> reviewers;
 	
-	private boolean allocated;
-	
-	private boolean graded;
-	
 	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapers) {
 		this.acronym = acronym;
 		this.committeeMembers = committeeMembers;
@@ -33,17 +27,6 @@ public class Conference {
 		this.ungradedPapers = new ArrayList<>();
 		this.gradedPapers = new ArrayList<>();
 		this.reviewers = new ArrayList<>();
-		
-		this.allocated = false;
-		this.graded = false;
-	}
-
-	public boolean isAllocated() {
-		return allocated;
-	}
-
-	public boolean isGraded() {
-		return graded;
 	}
 
 	public void allocatePaper(Paper paper, List<Reviewer> reviewers) {
@@ -75,9 +58,10 @@ public class Conference {
 	}
 	
 	private void removeFromUnallocatedPapers(Paper selectedPaper) {
-		for(Paper p : unallocatedPapers){
-			if(p.equals(selectedPaper))
-				ungradedPapers.remove(p);
+		for(int i = 0; i < unallocatedPapers.size(); i++){
+			Paper currentUnallocatedPaper = unallocatedPapers.get(i);
+			if(currentUnallocatedPaper.equals(selectedPaper))
+				unallocatedPapers.remove(i);
 		}
 	}
 	
@@ -122,10 +106,6 @@ public class Conference {
 		} else {
 			return false;
 		}
-	}
-	
-	public void setAllocated(boolean allocated) {
-		this.allocated = allocated;
 	}
 	
 	public boolean equals(Conference conference) {

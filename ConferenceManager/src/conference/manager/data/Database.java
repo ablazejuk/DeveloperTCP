@@ -260,7 +260,6 @@ public class Database {
 	}
 	
 	public void setAllocated(Conference conference) {
-		conference.setAllocated(true);
 		this.allocatedConferences.add(conference);
 		
 		List<Conference> newUnallocatedConferences = new ArrayList<>();

@@ -50,4 +50,40 @@ public class ConferenceTest {
 		assertTrue(c2.equals(c2));
 		assertFalse(c1.equals(c3));
 	}
+	
+	@Test
+	public void testAllocatePaper() {
+		List<Conference> conferences = this.database.getUnallocatedConferences();
+		Conference c1 = conferences.get(0);
+		
+		List<Paper>    papers    = c1.getUnallocatedPapers();
+		List<Reviewer> reviewers = c1.getReviewers();
+		
+		Paper paperToAllocate = papers.get(0);
+		c1.allocatePaper(paperToAllocate, reviewers);
+		
+		for (Paper p : c1.getUnallocatedPapers()) {
+			assertFalse(p.equals(paperToAllocate));
+		}
+		
+		for (Paper p : c1.getUngradedPapers()) {
+			assertTrue(p.equals(paperToAllocate));
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
