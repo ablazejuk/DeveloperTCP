@@ -50,8 +50,24 @@ public class Conference {
 
 	public void assignGrade(Paper paper, Reviewer reviewer, int grade) {
 		paper.addGrade(reviewer, grade);
+		
+		if(paper.isGraded()){
+			addToGradedPapers(paper);
+			removeFromUngradedPapers(paper);
+		}
 	}
 
+	private void addToGradedPapers(Paper selectedPaper){
+		gradedPapers.add(selectedPaper);
+	}
+	
+	private void removeFromUngradedPapers(Paper selectedPaper){
+		for(Paper p : ungradedPapers){
+			if(p.equals(selectedPaper))
+				ungradedPapers.remove(p);
+		}
+	}
+	
 	public List<Paper> getGradedPapers() {
 		return gradedPapers;
 	}

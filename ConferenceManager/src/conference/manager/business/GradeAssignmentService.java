@@ -11,6 +11,6 @@ public interface GradeAssignmentService {
 
 	public abstract List<Reviewer> getReviewers(Paper paper);
 
-	public abstract void assignGrade(Paper paper, Reviewer reviewer);
+	public abstract void assignGrade(Paper paper, Reviewer reviewer, int grade);
 
 }

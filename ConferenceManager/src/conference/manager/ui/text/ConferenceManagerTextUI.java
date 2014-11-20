@@ -3,20 +3,14 @@ package conference.manager.ui.text;
 import java.util.List;
 import java.util.Scanner;
 
-import conference.manager.business.CommitteeAllocationService;
-import conference.manager.business.GradeAssignmentService;
-import conference.manager.business.PaperSelectionService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
-import conference.manager.business.impl.CommitteeAllocationServiceImpl;
-import conference.manager.business.impl.GradeAssignmentServiceImpl;
-import conference.manager.business.impl.PaperSelectionServiceImpl;
+import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
 import conference.manager.ui.text.command.AllocateCommitteeCommand;
 import conference.manager.ui.ConferenceManagerUI;
 import conference.manager.ui.text.command.SelectPapersCommand;
 import conference.manager.ui.text.command.AssignGradeCommand;
-import conference.manager.ui.text.command.Command;
 
 public class ConferenceManagerTextUI extends ConferenceManagerUI {
 
@@ -104,7 +98,19 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		System.out.println("*Ungraded Papers*");
 		
 		for (Paper p : ungradedPapers){
-			System.out.println(p);
+			System.out.println(p.getId() + " - " + p);
 		}
+		System.out.println();
+	}
+	
+	public void showReviewers(List<Reviewer> reviewers){
+		System.out.println("*Reviewers*");
+		
+		for (Reviewer r : reviewers){
+			System.out.print(r.getId());
+			System.out.print(" - ");
+			System.out.println(r);
+		}
+		System.out.println();
 	}
 }

@@ -25,11 +25,11 @@ public class Reviewer extends Researcher implements Comparable {
 	}
 
 	public List<Paper> getPapersToReview() {
-		return null;
+		return papersToReview;
 	}
 
 	public void addPaperToReview(Paper paper) {
-
+		papersToReview.add(paper);
 	}
 
 	public boolean isAbleToReview(Paper paper) {
@@ -37,7 +37,10 @@ public class Reviewer extends Researcher implements Comparable {
 	}
 
 	public void removePaperToReview(Paper paper) {
-
+		for(Paper p : papersToReview){
+			if(p.equals(papersToReview))
+				papersToReview.remove(p);
+		}
 	}
 
 	@Override

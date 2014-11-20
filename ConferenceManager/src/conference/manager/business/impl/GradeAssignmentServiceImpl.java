@@ -1,6 +1,7 @@
 package conference.manager.business.impl;
 
 import conference.manager.business.GradeAssignmentService;
+import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.business.domain.Paper;
 import conference.manager.data.Database;
@@ -19,19 +20,15 @@ public class GradeAssignmentServiceImpl implements GradeAssignmentService {
 	}
 
 	public List<Reviewer> getReviewers(Paper paper) {
-		return null;
+		return paper.getReviewers();
 	}
 
 	public void assignGrade(Paper paper, Reviewer reviewer, int grade) {
-
-	}
-
-
-	/**
-	 * @see conference.manager.business.GradeAssignmentService#assignGrade(paper : Paper, reviewer :Reviewer)()
-	 */
-	public void assignGrade(Paper paper, Reviewer reviewer) {
-
+		Conference conference = paper.getConference();
+		conference.assignGrade(paper, reviewer, grade);
+		reviewer.removePaperToReview(paper);
+		if(paper.isGraded())
+			database.setGraded(paper);
 	}
 
 }

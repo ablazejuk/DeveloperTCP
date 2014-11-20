@@ -2,7 +2,6 @@ package conference.manager.business.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 
 public class Researcher {
 
@@ -61,5 +60,9 @@ public class Researcher {
 	
 	public void addPaper(Paper paper) {
 		this.papers.add(paper);
+	}
+	
+	public String toString(){
+		return Integer.toString(id);
 	}
 }
