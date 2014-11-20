@@ -7,8 +7,6 @@ public class Conference {
 
 	private String acronym;
 
-	private List<Researcher> committeeMembers;
-
 	private Researcher coordenator;
 
 	private List<Paper> gradedPapers;
@@ -19,14 +17,13 @@ public class Conference {
 
 	private List<Reviewer> reviewers;
 	
-	public Conference(String acronym, List<Researcher> committeeMembers, List<Paper> unallocatedPapers) {
+	public Conference(String acronym, List<Reviewer> committeeMembers, List<Paper> unallocatedPapers) {
 		this.acronym = acronym;
-		this.committeeMembers = committeeMembers;
+		this.reviewers = committeeMembers;
 		this.unallocatedPapers = unallocatedPapers;
 		
 		this.ungradedPapers = new ArrayList<>();
 		this.gradedPapers = new ArrayList<>();
-		this.reviewers = new ArrayList<>();
 	}
 
 	public void allocatePaper(Paper paper, List<Reviewer> reviewers) {
@@ -86,10 +83,6 @@ public class Conference {
 
 	public String getAcronym() {
 		return acronym;
-	}
-
-	public List<Researcher> getCommitteeMembers() {
-		return committeeMembers;
 	}
 
 	public List<Reviewer> getReviewers() {

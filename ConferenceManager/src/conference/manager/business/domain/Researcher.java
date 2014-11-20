@@ -15,7 +15,7 @@ public class Researcher {
 
 	private List<Paper> papers;
 
-	public Researcher(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers, Conference conference) {
+	public Researcher(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers) {
 		this.id = id;
 		this.name = name;
 		this.affiliation = affiliation;

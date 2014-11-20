@@ -25,12 +25,14 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 		
 		List<Reviewer> selectedReviewers;
 		
-		for (Paper paper : unallocatedPapers) {
-			List<Reviewer> reviewers = conference.getReviewers();
-			selectedReviewers = selectReviewers(paper, reviewers, numReviewers); 
+		while (!unallocatedPapers.isEmpty()) {
+			List<Reviewer> reviewers  = conference.getReviewers();
+			Paper          currentPaper = unallocatedPapers.get(0);
 			
-			conference.allocatePaper(paper, selectedReviewers);
-			database.setUngraded(paper);
+			selectedReviewers = selectReviewers(currentPaper, reviewers, numReviewers); 
+			
+			conference.allocatePaper(currentPaper, selectedReviewers);
+			database.setUngraded(currentPaper);
 		}
 		
 		database.setAllocated(conference);

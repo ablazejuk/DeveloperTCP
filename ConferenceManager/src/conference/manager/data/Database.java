@@ -1,5 +1,6 @@
 package conference.manager.data;
 
+import conference.manager.business.domain.Reviewer;
 import conference.manager.business.domain.University;
 import conference.manager.business.domain.ResearchTopic;
 import conference.manager.business.domain.Researcher;
@@ -100,16 +101,16 @@ public class Database {
 		carlosInterests.add(softwareReuse);
 		carlosInterests.add(modularity);
 		
-		Researcher joao    = new Researcher(1, "João", ufrgs, joaoInterests);
-		Researcher ana     = new Researcher(2, "Ana", usp, anaInterests);
-		Researcher manoel  = new Researcher(3, "Manoel", ufrgs, manoelInterests);
-		Researcher joana   = new Researcher(4, "Joana", ufrj, joanaInterests);
-		Researcher miguel  = new Researcher(5, "Miguel", ufrgs, miguelInterests);
-		Researcher beatriz = new Researcher(6, "Beatriz", ufrj, beatrizInterests);
-		Researcher suzana  = new Researcher(7, "Suzana", ufrgs, suzanaInterests);
-		Researcher natasha = new Researcher(8, "Natasha", ufrj, natashaInterests);
-		Researcher pedro   = new Researcher(9, "Pedro", usp, pedroInterests);
-		Researcher carlos  = new Researcher(10, "Carlos", usp, carlosInterests);
+		Reviewer joao    = new Reviewer(1, "João", ufrgs, joaoInterests);
+		Reviewer ana     = new Reviewer(2, "Ana", usp, anaInterests);
+		Reviewer manoel  = new Reviewer(3, "Manoel", ufrgs, manoelInterests);
+		Reviewer joana   = new Reviewer(4, "Joana", ufrj, joanaInterests);
+		Reviewer miguel  = new Reviewer(5, "Miguel", ufrgs, miguelInterests);
+		Reviewer beatriz = new Reviewer(6, "Beatriz", ufrj, beatrizInterests);
+		Reviewer suzana  = new Reviewer(7, "Suzana", ufrgs, suzanaInterests);
+		Reviewer natasha = new Reviewer(8, "Natasha", ufrj, natashaInterests);
+		Reviewer pedro   = new Reviewer(9, "Pedro", usp, pedroInterests);
+		Reviewer carlos  = new Reviewer(10, "Carlos", usp, carlosInterests);
 		
 		Paper couplingAndCoesion      = new Paper(1, "Coupling and Coesion", joao, modularity);
 		Paper designPatterns          = new Paper(2, "Design Patterns", beatriz, softwareReuse);
@@ -135,7 +136,7 @@ public class Database {
 		carlos.addPaper(functionalTesting);
 		carlos.addPaper(structuralTesting);
 		
-		List<Researcher> membersCommitteeICSE = new ArrayList<>();
+		List<Reviewer> membersCommitteeICSE = new ArrayList<>();
 		membersCommitteeICSE.add(joao);
 		membersCommitteeICSE.add(ana);
 		membersCommitteeICSE.add(manoel);
@@ -152,7 +153,7 @@ public class Database {
 		unallocatedPapersICSE.add(structuralTesting);
 		Conference icse = new Conference("ICSE", membersCommitteeICSE, unallocatedPapersICSE);
 		// ------------------------------------------------------------------------------------------------------
-		List<Researcher> membersCommitteeFSE = membersCommitteeICSE;
+		List<Reviewer> membersCommitteeFSE = membersCommitteeICSE;
 		
 		List<Paper> unallocatedPapersFSE = new ArrayList<>();
 		unallocatedPapersFSE.add(designPatterns);
@@ -162,7 +163,7 @@ public class Database {
 		unallocatedPapersFSE.add(functionalTesting);
 		Conference fse  = new Conference("FSE", membersCommitteeFSE, unallocatedPapersFSE);
 		// ------------------------------------------------------------------------------------------------------
-		List<Researcher> membersCommitteeSBES = new ArrayList<>();
+		List<Reviewer> membersCommitteeSBES = new ArrayList<>();
 		membersCommitteeSBES.add(joana);
 		membersCommitteeSBES.add(miguel);
 		membersCommitteeSBES.add(beatriz);

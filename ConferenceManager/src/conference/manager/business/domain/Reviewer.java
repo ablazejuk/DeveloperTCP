@@ -1,5 +1,6 @@
 package conference.manager.business.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
 
@@ -7,11 +8,21 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 
 	private List<Paper> papersToReview;
 	
-	public Reviewer(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers, Conference conference, List<Paper> papersToReview) {
-		super(id, name, affiliation, interests, papers, conference);
+	public Reviewer(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers, List<Paper> papersToReview) {
+		super(id, name, affiliation, interests, papers);
 		this.papersToReview = papersToReview;
 	}
-
+	
+	public Reviewer(int id, String name, University affiliation, List<ResearchTopic> interests, List<Paper> papers) {
+		super(id, name, affiliation, interests, papers);
+		this.papersToReview = new ArrayList<>();
+	}
+	
+	public Reviewer(int id, String name, University affiliation, List<ResearchTopic> interests) {
+		super(id, name, affiliation, interests);
+		this.papersToReview = new ArrayList<>();
+	}
+	
 	private boolean hasSameAffiliation(Researcher researcher) {
 		boolean sameAffiliation = this.getAffiliation().equals(researcher.getAffiliation());
 		return sameAffiliation;
@@ -26,21 +37,10 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 	}
 
 	private boolean hasPaperToReviewInConference(Conference conference) {
-		List<Paper> papersConference = conference.getUnallocatedPapers();
+		List<Paper> unallocatedPapers = conference.getUnallocatedPapers();
+		boolean stillPapersUnallocated = !unallocatedPapers.isEmpty();
 		
-		for (Paper p : papersConference) {
-			Researcher paperAuthor = p.getAuthor();
-			
-			if (!this.equals(paperAuthor))
-				return true;
-		}
-		
-		return false;
-	}
-
-	private boolean isTheAuthor(Paper paper) {
-		boolean isTheAuthor = this.equals(paper.getAuthor());
-		return isTheAuthor;
+		return stillPapersUnallocated;
 	}
 	
 	public List<Paper> getPapersToReview() {
@@ -56,8 +56,7 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 		ResearchTopic paperTopic  = paper.getResearchTopic();
 		
 		boolean isAbleToReview = this.hasSameAffiliation(paperAuthor) &&
-								 this.hasInterestIn(paperTopic) &&
-								 !this.isTheAuthor(paper);
+								 this.hasInterestIn(paperTopic);
 		
 		return isAbleToReview;
 	}
