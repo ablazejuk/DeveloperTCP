@@ -2,7 +2,7 @@ package conference.manager.business.domain;
 
 import java.util.List;
 
-public class Paper {
+public class Paper implements Comparable<Paper> {
 
 	private int id;
 
@@ -143,5 +143,11 @@ public class Paper {
 	
 	public String toString() {
 		return this.title;
+	}
+
+	@Override
+	public int compareTo(Paper paper) {
+		int compare = this.id - paper.getId();
+		return compare;
 	}
 }

@@ -3,6 +3,8 @@ package conference.manager.business.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.SliderUI;
+
 public class Conference {
 
 	private String acronym;
@@ -46,6 +48,13 @@ public class Conference {
 
 	public void allocatePaper(Paper paper, List<Reviewer> reviewers) {
 		paper.addReviewers(reviewers);
+		
+		for (Reviewer reviewer : reviewers) {
+			reviewer.addPaperToReview(paper);
+		}
+		
+		removeFromUnallocatedPapers(paper);
+		addToUngradedPapers(paper);
 	}
 
 	public void assignGrade(Paper paper, Reviewer reviewer, int grade) {
@@ -57,11 +66,22 @@ public class Conference {
 		}
 	}
 
-	private void addToGradedPapers(Paper selectedPaper){
+	private void addToGradedPapers(Paper selectedPaper) {
 		gradedPapers.add(selectedPaper);
 	}
 	
-	private void removeFromUngradedPapers(Paper selectedPaper){
+	private void addToUngradedPapers(Paper selectedPaper) {
+		ungradedPapers.add(selectedPaper);
+	}
+	
+	private void removeFromUnallocatedPapers(Paper selectedPaper) {
+		for(Paper p : unallocatedPapers){
+			if(p.equals(selectedPaper))
+				ungradedPapers.remove(p);
+		}
+	}
+	
+	private void removeFromUngradedPapers(Paper selectedPaper) {
 		for(Paper p : ungradedPapers){
 			if(p.equals(selectedPaper))
 				ungradedPapers.remove(p);

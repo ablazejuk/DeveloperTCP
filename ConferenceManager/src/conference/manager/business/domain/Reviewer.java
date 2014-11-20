@@ -3,7 +3,7 @@ package conference.manager.business.domain;
 import java.util.List;
 import java.util.Collection;
 
-public class Reviewer extends Researcher implements Comparable {
+public class Reviewer extends Researcher implements Comparable<Reviewer> {
 
 	private List<Paper> papersToReview;
 	
@@ -13,17 +13,36 @@ public class Reviewer extends Researcher implements Comparable {
 	}
 
 	private boolean hasSameAffiliation(Researcher researcher) {
-		return this.getAffiliation().equals(researcher.getAffiliation());
+		boolean sameAffiliation = this.getAffiliation().equals(researcher.getAffiliation());
+		return sameAffiliation;
 	}
 
 	private boolean hasInterestIn(ResearchTopic topic) {
+		for (ResearchTopic rt : this.interests) {
+			if (topic.equals(rt))
+				return true;
+		}
 		return false;
 	}
 
 	private boolean hasPaperToReviewInConference(Conference conference) {
+		List<Paper> papersConference = conference.getUnallocatedPapers();
+		
+		for (Paper p : papersConference) {
+			Researcher paperAuthor = p.getAuthor();
+			
+			if (!this.equals(paperAuthor))
+				return true;
+		}
+		
 		return false;
 	}
 
+	private boolean isTheAuthor(Paper paper) {
+		boolean isTheAuthor = this.equals(paper.getAuthor());
+		return isTheAuthor;
+	}
+	
 	public List<Paper> getPapersToReview() {
 		return papersToReview;
 	}
@@ -33,7 +52,14 @@ public class Reviewer extends Researcher implements Comparable {
 	}
 
 	public boolean isAbleToReview(Paper paper) {
-		return false;
+		Researcher    paperAuthor = paper.getAuthor();
+		ResearchTopic paperTopic  = paper.getResearchTopic();
+		
+		boolean isAbleToReview = this.hasSameAffiliation(paperAuthor) &&
+								 this.hasInterestIn(paperTopic) &&
+								 !this.isTheAuthor(paper);
+		
+		return isAbleToReview;
 	}
 
 	public void removePaperToReview(Paper paper) {
@@ -44,9 +70,16 @@ public class Reviewer extends Researcher implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Reviewer r) {
+		int numOfAllocatedPapers = this.papersToReview.size();
+		int compareNumOfAllocatedPapers = r.getPapersToReview().size();
+		
+		int compare = numOfAllocatedPapers - compareNumOfAllocatedPapers;
+		if (compare == 0) {
+			compare = this.id - r.getId();
+		}
+		
+		return compare;
 	}
 
 }

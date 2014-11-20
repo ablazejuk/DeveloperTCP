@@ -41,7 +41,7 @@ public class DatabaseTest {
 		Paper unallocatedPaper = database.getUnallocatedPapers().get(0);
 		database.setUngraded(unallocatedPaper);
 		
-		for (Paper p : this.database.getUnallocatedPapers()) {
+		for (Paper p : database.getUnallocatedPapers()) {
 			assertFalse(unallocatedPaper.equals(p));
 		}
 		
