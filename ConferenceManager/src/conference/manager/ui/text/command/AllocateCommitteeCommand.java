@@ -1,10 +1,17 @@
 package conference.manager.ui.text.command;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
+import conference.manager.business.domain.Reviewer;
 import conference.manager.business.impl.CommitteeAllocationServiceImpl;
 import conference.manager.data.Database;
 import conference.manager.ui.text.ConferenceManagerTextUI;
@@ -13,10 +20,24 @@ import conference.manager.ui.text.UIUtils;
 public class AllocateCommitteeCommand extends Command {
 	
 	private CommitteeAllocationService committeeAllocationService;
+	private String logFilePath;
+	private PrintWriter logWriter;
 	
 	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface, Database database) {
 		this.ConferenceManagerInterface = ConferenceManagerInterface;
 		this.committeeAllocationService = new CommitteeAllocationServiceImpl(database);
+		
+		this.logFilePath = "log.txt";
+		
+		try {
+		
+			logWriter = new PrintWriter(logFilePath, "utf-8");
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void execute() {
@@ -26,8 +47,18 @@ public class AllocateCommitteeCommand extends Command {
 		Conference  selectedConference = selectConference();
 		int         numReviewers       = askNumberReviewers();
 		
+		addLogEntry("Initializing Allocation");
+		
 		List<Paper> allocatedPapers = allocatePapers(selectedConference, numReviewers);
+		
+		addLogEntry(allocatedPapers);
+		addLogEntry("End of Allocation");
+		logWriter.close();
+		
 		ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
+		printLog();
+		
+		ConferenceManagerInterface.createAndShow();
 	}
 
 	public List<Conference> getUnallocatedConferences() {
@@ -42,12 +73,32 @@ public class AllocateCommitteeCommand extends Command {
 		return committeeAllocationService.allocatePapers(conference, numReviewers);
 	}
 	
-	private void showAllocatedPapers(List<Paper> allocatedPapers) {
-
+	private void addLogEntry(String entry) {
+		logWriter.println(entry);
 	}
-
-	private void printLog(List<Paper> allocatedPapers) {
-
+	
+	private void addLogEntry(List<Paper> allocatedPapers) {
+		for (Paper p : allocatedPapers) {
+			for (Reviewer r : p.getReviewers()) {
+				logWriter.println("Paper " + p + " allocated to the reviewer " + r);
+			}
+		}
+ 	}
+	
+	private void printLog() {
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(logFilePath));
+			
+			System.out.println();
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				System.out.println(line);
+			}
+			System.out.println();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private Conference selectConference() {

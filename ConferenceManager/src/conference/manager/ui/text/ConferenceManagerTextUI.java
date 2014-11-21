@@ -18,6 +18,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	private static final int COMMAND_ALLOCATION = 1;
 	private static final int COMMAND_ASSIGN_GRADE = 2;
 	private static final int COMMAND_SELECTION = 3;
+	private static final int COMMAND_EXIT = 0;
 	
 	private Map<Integer, Command> commands;
 	
@@ -37,7 +38,10 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	public void createAndShow() {
 		this.showMenu();
 	    int option = this.getCommand();
-	    this.executeCommand(option);
+	    
+	    if (option != COMMAND_EXIT) {
+	    	this.executeCommand(option);
+	    }
 	}
 	
 	private void showMenu() {
@@ -50,6 +54,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		System.out.println("1 - Allocation of Articles");
 		System.out.println("2 - Grade Allocated Articles");
 		System.out.println("3 - Select Graded Articles");
+		System.out.println("0 - Exit");
 		System.out.println();
 	}
 	
