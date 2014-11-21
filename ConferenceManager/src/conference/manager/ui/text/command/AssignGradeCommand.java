@@ -21,7 +21,7 @@ public class AssignGradeCommand extends Command {
 	}
 
 	public void execute() {
-		List<Paper> ungradedPapers = getPapers();
+		List<Paper> ungradedPapers = getUngradedPapers();
 		showPapers(ungradedPapers);
 		int paperId;
 		int reviewerId;
@@ -45,8 +45,8 @@ public class AssignGradeCommand extends Command {
 		gradeAssignmentService.assignGrade(selectedPaper, selectedReviewer, grade);
 	}
 	
-	private List<Paper> getPapers(){
-		return gradeAssignmentService.getPapers();
+	private List<Paper> getUngradedPapers(){
+		return gradeAssignmentService.getUngradedPapers();
 	}
 	
 	private List<Reviewer> getReviewers(Paper selectedPaper){

@@ -15,8 +15,8 @@ public class GradeAssignmentServiceImpl implements GradeAssignmentService {
 		this.database = database;
 	}
 
-	public List<Paper> getPapers() {
-		return this.database.getUnallocatedPapers();
+	public List<Paper> getUngradedPapers() {
+		return this.database.getUngradedPapers();
 	}
 
 	public List<Reviewer> getReviewers(Paper paper) {

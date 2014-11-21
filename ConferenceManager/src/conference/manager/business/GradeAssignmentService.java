@@ -7,7 +7,7 @@ import conference.manager.business.domain.Reviewer;
 
 public interface GradeAssignmentService {
 
-	public abstract List<Paper> getPapers();
+	public abstract List<Paper> getUngradedPapers();
 
 	public abstract List<Reviewer> getReviewers(Paper paper);
 
