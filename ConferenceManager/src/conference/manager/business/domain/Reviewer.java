@@ -55,8 +55,8 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 		Researcher    paperAuthor = paper.getAuthor();
 		ResearchTopic paperTopic  = paper.getResearchTopic();
 		
-		boolean isAbleToReview = this.hasSameAffiliation(paperAuthor) &&
-								 this.hasInterestIn(paperTopic);
+		boolean isAbleToReview = !this.hasSameAffiliation(paperAuthor) &&
+								  this.hasInterestIn(paperTopic);
 		
 		return isAbleToReview;
 	}

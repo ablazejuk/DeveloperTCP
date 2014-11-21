@@ -196,9 +196,10 @@ public class Database {
 		this.researchTopics.add(aspectOrientedProgramming);
 		this.researchTopics.add(softwareQuality);
 		
+		this.unallocatedConferences.add(icse);
 		this.unallocatedConferences.add(sbes);
 		this.unallocatedConferences.add(fse);
-		this.unallocatedConferences.add(icse);
+		
 		
 		this.universities.add(ufrgs);
 		this.universities.add(usp);
@@ -215,17 +216,18 @@ public class Database {
 		this.researchers.add(pedro);
 		this.researchers.add(carlos);
 		
-		this.unallocatedPapers.add(couplingAndCoesion);
-		this.unallocatedPapers.add(designPatterns);
+		
+		this.unallocatedPapers.add(productDerivation);
+		this.unallocatedPapers.add(cots);
 		this.unallocatedPapers.add(aspectJ);
 		this.unallocatedPapers.add(featureModel);
 		this.unallocatedPapers.add(architectureRecovery);
+		this.unallocatedPapers.add(designPatterns);
 		this.unallocatedPapers.add(functionalTesting);
-		this.unallocatedPapers.add(cots);
-		this.unallocatedPapers.add(pointcut);
-		this.unallocatedPapers.add(productDerivation);
 		this.unallocatedPapers.add(architectureComformance);
+		this.unallocatedPapers.add(couplingAndCoesion);
 		this.unallocatedPapers.add(structuralTesting);
+		this.unallocatedPapers.add(pointcut);
 	}
 
 	public List<University> getUniversities() {

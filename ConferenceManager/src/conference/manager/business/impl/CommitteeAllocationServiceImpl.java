@@ -20,16 +20,13 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 	
 	public List<Paper> allocatePapers(Conference conference, int numReviewers) {
 		List<Paper> unallocatedPapers = conference.getUnallocatedPapers();
-		
 		sortUnallocatedPapersBySmallerId(unallocatedPapers);
-		
-		List<Reviewer> selectedReviewers;
-		
+
 		while (!unallocatedPapers.isEmpty()) {
-			List<Reviewer> reviewers  = conference.getReviewers();
-			Paper          currentPaper = unallocatedPapers.get(0);
+			Paper          currentPaper      = unallocatedPapers.get(0);
+			List<Reviewer> reviewers         = conference.getReviewers();
 			
-			selectedReviewers = selectReviewers(currentPaper, reviewers, numReviewers); 
+			List<Reviewer> selectedReviewers = selectReviewers(currentPaper, reviewers, numReviewers); 
 			
 			conference.allocatePaper(currentPaper, selectedReviewers);
 			database.setUngraded(currentPaper);
@@ -58,9 +55,14 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 	}
 
 	private List<Reviewer> createAllocatedReviewersArray(List<Reviewer> reviewersAbleToReview, int numReviewers) {
-		List<Reviewer> allocatedReviewersAbleToReview = new ArrayList<>(numReviewers);
+		List<Reviewer> allocatedReviewersAbleToReview = new ArrayList<>();
 		
-		for (int i = 0; i < numReviewers; i++) {
+		boolean numReviewersBiggerThanListSize = numReviewers > reviewersAbleToReview.size();
+		
+		int sizeReviewersArray = numReviewersBiggerThanListSize ? 
+				reviewersAbleToReview.size() : numReviewers;
+		
+		for (int i = 0; i < sizeReviewersArray; i++) {
 			Reviewer reviewerToAdd = reviewersAbleToReview.get(i);
 			allocatedReviewersAbleToReview.add(reviewerToAdd);
 		}
