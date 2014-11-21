@@ -1,74 +1,45 @@
 package conference.manager.business.impl;
 
-import conference.manager.business.PaperSelectionService;
-import conference.manager.business.CommitteeAllocationService;
-import conference.manager.business.domain.Conference;
-import conference.manager.business.domain.Paper;
-import conference.manager.data.Database;
-
 import java.util.LinkedList;
 import java.util.List;
 
-public class PaperSelectionServiceImpl implements PaperSelectionService {
+import conference.manager.business.domain.Conference;
+import conference.manager.data.*;
+import static org.junit.Assert.*;
 
-	private Database database;
+import org.junit.Test;
+import org.junit.Before;
 
-	public PaperSelectionServiceImpl(Database database) {
-		this.database = database;
+
+public class PaperSelectionServiceImplTest {
+	
+	PaperSelectionServiceImpl paperSelector;
+	Database db;
+	
+	@Before
+	public void setUp(){
+		db = new Database();
+		paperSelector = new PaperSelectionServiceImpl(db);
 	}
 
-	public List<Conference> getConferences() {
-		List<Conference> conferencias = database.getAllocatedConferences();
-			return conferencias;
-			//TODO: MAKE TRY CATCH THING
-		
-		
+	@Test
+	public void test() {
+		fail("Not yet implemented");
 	}
-
-	public List<Paper> getAcceptedPapers(Conference conference) {
-		if (conference.isGraded()){
-			List<Paper> lista_de_papers = new LinkedList<Paper>();
-			for (Paper paper: conference.getGradedPapers())
-			{
-				if (paper.isAccepted()){
-					lista_de_papers.add(paper);
-				}
-			}
-			return lista_de_papers;
-		}
-		else
-		{
-			return conference.getGradedPapers();//está errado!!!
-			
-		}
-		//TODO: FIND OUT WHERE TO THROW EXCEPTION FOR NULL LISTS!!!
-
-		
+	
+	@Test
+	public void getConferencesNulltest(){
+		assertFalse(paperSelector.getConferences() == null);
 	}
-
-	public List<Paper> getRejectedPapers(Conference conference) {
-		if (conference.isGraded()){
-			List<Paper> lista_de_papers = new LinkedList<Paper>();
-			for (Paper paper: conference.getGradedPapers())
-			{
-				if (!paper.isAccepted() ){
-					lista_de_papers.add(paper);
-				}
-			}
-			return lista_de_papers;
-		}
-		else
-		{
-			return conference.getGradedPapers();//está errado!!!
-			
-		}
-		//TODO: FIND OUT WHERE TO THROW EXCEPTION FOR NULL LISTS!!!
-
+	@Test
+	public void getAcceptedpapersNulltest(){
+		assertFalse(paperSelector.getAcceptedPapers(db.getAllocatedConferences().get(0)) == null);
+	}
+	@Test
+	public void getRejectedpapersNulltest(){
+		assertFalse(paperSelector.getRejectedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	
 	
-	
-
-
 
 }
