@@ -21,9 +21,13 @@ public class AllocateCommitteeCommand extends Command {
 
 	public void execute() {
 		List<Conference> unallocatedConferences = this.getUnallocatedConferences();
-		
 		ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
-		Conference selectedConference = selectConference();
+		
+		Conference  selectedConference = selectConference();
+		int         numReviewers       = askNumberReviewers();
+		
+		List<Paper> allocatedPapers = allocatePapers(selectedConference, numReviewers);
+		ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
 	}
 
 	public List<Conference> getUnallocatedConferences() {
@@ -34,8 +38,8 @@ public class AllocateCommitteeCommand extends Command {
 		return conference.getUnallocatedPapers();
 	}
 
-	public List<Paper> allocatePapers(List<Paper> papers, Conference conference, int numReviewers) {
-		return null;
+	public List<Paper> allocatePapers(Conference conference, int numReviewers) {
+		return committeeAllocationService.allocatePapers(conference, numReviewers);
 	}
 	
 	private void showAllocatedPapers(List<Paper> allocatedPapers) {
@@ -47,8 +51,12 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	private Conference selectConference() {
-		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ");
-		return null;
+		int numOfUnallocatedConferences = committeeAllocationService.getUnallocatedConferences().size();
+		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
+		
+		Conference selectedConference = committeeAllocationService.getUnallocatedConferenceByIndex(conferenceNumber - 1);
+		
+		return selectedConference;
 	}
 
 	private int askNumberReviewers() {

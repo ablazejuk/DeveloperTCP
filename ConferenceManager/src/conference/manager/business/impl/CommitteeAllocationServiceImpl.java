@@ -87,4 +87,10 @@ public class CommitteeAllocationServiceImpl implements CommitteeAllocationServic
 	private void sortReviewersAbleToReviewByNumOfAllocations(List<Reviewer> reviewersAbleToReview) {
 		Collections.sort(reviewersAbleToReview);
 	}
+
+	@Override
+	public Conference getUnallocatedConferenceByIndex(int index) {
+		List<Conference> unallocatedConferences = getUnallocatedConferences();
+		return unallocatedConferences.get(index);
+	}
 }

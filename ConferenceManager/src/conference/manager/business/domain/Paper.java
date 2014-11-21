@@ -142,7 +142,7 @@ public class Paper implements Comparable<Paper> {
 	}
 	
 	public String toString() {
-		return this.title;
+		return this.id + " - " + this.title;
 	}
 
 	@Override

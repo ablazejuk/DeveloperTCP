@@ -74,23 +74,32 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		System.out.println();
 	}
 	
-	public void showUngradedPapers(List<Paper> ungradedPapers){
+	public void showUngradedPapers(List<Paper> ungradedPapers) {
 		System.out.println("*Ungraded Papers*");
 		
 		for (Paper p : ungradedPapers){
-			System.out.println(p.getId() + " - " + p);
+			System.out.println(p);
 		}
 		System.out.println();
 	}
 	
-	public void showReviewers(List<Reviewer> reviewers){
+	public void showReviewers(List<Reviewer> reviewers) {
 		System.out.println("*Reviewers*");
 		
 		for (Reviewer r : reviewers){
-			System.out.print(r.getId());
-			System.out.print(" - ");
 			System.out.println(r);
 		}
 		System.out.println();
+	}
+	
+	public void showAllocatedPapers(List<Paper> allocatedPapers) {
+		System.out.println("*Allocated Papers*");
+		
+		for (Paper p : allocatedPapers) {
+			System.out.println(p);
+			for (Reviewer r : p.getReviewers()) {
+				System.out.println("    " + r);
+			}
+		}
 	}
 }

@@ -60,6 +60,6 @@ public class Researcher {
 	}
 	
 	public String toString(){
-		return Integer.toString(id);
+		return this.id + " - " + this.name;
 	}
 }

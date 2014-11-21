@@ -12,5 +12,6 @@ public interface CommitteeAllocationService {
 	public abstract List<Paper> getUnallocatedPapers(Conference conference);
 
 	public abstract List<Paper> allocatePapers(Conference conference, int numReviewers);
-
+	
+	public abstract Conference getUnallocatedConferenceByIndex(int index);
 }
