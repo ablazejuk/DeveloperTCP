@@ -8,6 +8,7 @@ import conference.manager.business.domain.Paper;
 import conference.manager.business.impl.CommitteeAllocationServiceImpl;
 import conference.manager.data.Database;
 import conference.manager.ui.text.ConferenceManagerTextUI;
+import conference.manager.ui.text.UIUtils;
 
 public class AllocateCommitteeCommand extends Command {
 	
@@ -20,7 +21,9 @@ public class AllocateCommitteeCommand extends Command {
 
 	public void execute() {
 		List<Conference> unallocatedConferences = this.getUnallocatedConferences();
-		this.ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
+		
+		ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
+		Conference selectedConference = selectConference();
 	}
 
 	public List<Conference> getUnallocatedConferences() {
@@ -44,10 +47,11 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	private Conference selectConference() {
+		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ");
 		return null;
 	}
 
 	private int askNumberReviewers() {
-		return 0;
+		return UIUtils.getInstance().readInteger("Select the number of reviewers: ", 2, 5);
 	}
 }

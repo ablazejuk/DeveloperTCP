@@ -1,14 +1,15 @@
 package conference.manager.ui.text;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
+import java.util.Map;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
 import conference.manager.ui.text.command.AllocateCommitteeCommand;
 import conference.manager.ui.ConferenceManagerUI;
+import conference.manager.ui.text.command.Command;
 import conference.manager.ui.text.command.SelectPapersCommand;
 import conference.manager.ui.text.command.AssignGradeCommand;
 
@@ -18,12 +19,19 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	private static final int COMMAND_ASSIGN_GRADE = 2;
 	private static final int COMMAND_SELECTION = 3;
 	
+	private Map<Integer, Command> commands;
+	
 	public ConferenceManagerTextUI() {
 		Database database = new Database();
 		
 		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this, database);
 		this.assignGradeCommand = new AssignGradeCommand(this, database);
 		this.selectPapersCommand = new SelectPapersCommand(this);
+		
+		this.commands = new HashMap<Integer, Command>();
+		this.commands.put(COMMAND_ALLOCATION, this.allocateCommitteeCommand);
+		this.commands.put(COMMAND_ASSIGN_GRADE, this.assignGradeCommand);
+		this.commands.put(COMMAND_SELECTION, this.selectPapersCommand);
 	}
 	
 	public void createAndShow() {
@@ -38,60 +46,32 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		System.out.println("######    COMMITTEE HELPER MENU    ######");
 		System.out.println("######                             ######");
 		System.out.println("#########################################");
-		System.out.println("");
+		System.out.println();
 		System.out.println("1 - Allocation of Articles");
 		System.out.println("2 - Grade Allocated Articles");
 		System.out.println("3 - Select Graded Articles");
-		System.out.println("");
-		System.out.println("Select Your Option: ");
+		System.out.println();
 	}
 	
 	private int getCommand() {
-		Scanner reader = new Scanner(System.in);
-		int option;
-		
-		do {
-			option = reader.nextInt();
-		} while(!this.isValid(option));
-		
+		int option = UIUtils.getInstance().readInteger("Select Your Option: ", 1, 3);
 		System.out.println();
 		
 		return option;
 	}
-	
-	private boolean isValid(int option) {
-		switch (option) {
-		case 1:
-		case 2:
-		case 3:
-			return true;
-		default:
-			return false;
-		}
-	}
-	
+
 	private void executeCommand(int option) {
-		switch (option) {
-		case COMMAND_ALLOCATION:
-			allocateCommitteeCommand.execute();
-			break;
-		case COMMAND_ASSIGN_GRADE:
-			assignGradeCommand.execute();
-			break;
-		case COMMAND_SELECTION:
-			selectPapersCommand.execute();
-			break;
-		default:
-			assert false;
-		}
+		Command command = this.commands.get(option);
+		command.execute();
 	}
 	
 	public void showUnallocatedConferences(List<Conference> unallocatedConferences) {		
 		System.out.println("*Unallocated Conferences*");
-		
+		int cont = 1;
 		for (Conference c : unallocatedConferences) {
-			System.out.println(c);
+			System.out.println(cont++ + " - " + c.toString());
 		}
+		System.out.println();
 	}
 	
 	public void showUngradedPapers(List<Paper> ungradedPapers){

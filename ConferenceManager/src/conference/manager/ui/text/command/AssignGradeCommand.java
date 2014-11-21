@@ -27,7 +27,7 @@ public class AssignGradeCommand extends Command {
 		int reviewerId;
 		
 		do{
-			paperId = UIUtils.INSTANCE.readInteger("Insert a valid paper id: ");
+			paperId = UIUtils.getInstance().readInteger("Insert a valid paper id: ");
 		} while(!validatePaperId(ungradedPapers, paperId));
 		
 		Paper selectedPaper = selectPaper(ungradedPapers, paperId);
@@ -36,7 +36,7 @@ public class AssignGradeCommand extends Command {
 		showReviewers(reviewers);
 		
 		do{
-			reviewerId = UIUtils.INSTANCE.readInteger("Insert a valid reviewer id: ");
+			reviewerId = UIUtils.getInstance().readInteger("Insert a valid reviewer id: ");
 		} while(!validateReviewerId(reviewers, reviewerId));
 		
 		Reviewer selectedReviewer = selectReviewer(reviewers, reviewerId);
@@ -82,7 +82,7 @@ public class AssignGradeCommand extends Command {
 	}
 
 	private int requestGrade() {
-		return UIUtils.INSTANCE.readInteger("Insert a valid grade: ", -3, 3);
+		return UIUtils.getInstance().readInteger("Insert a valid grade: ", -3, 3);
 	}
 	
 	private boolean validatePaperId(List<Paper> papers, int id) {

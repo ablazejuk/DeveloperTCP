@@ -7,12 +7,12 @@ import java.util.Date;
 
 public class UIUtils {
 
-	public static final UIUtils INSTANCE = new UIUtils();
+	private static final UIUtils INSTANCE = new UIUtils();
 
 	private UIUtils() {
 	}
 
-	public UIUtils getInstance() {
+	public static UIUtils getInstance() {
 		return UIUtils.INSTANCE;
 	}
 
@@ -94,7 +94,7 @@ public class UIUtils {
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    } 
-	    } while(!isNotOutOfBounds(number, min, max));
+	    } while(isOutOfBounds(number, min, max));
 		
 		return number;
 	}
@@ -133,13 +133,12 @@ public class UIUtils {
 		return input;
 	}
 	
-	private boolean isNotOutOfBounds(int number, int min, int max){
-		
-		if(number >= min && number <= max){
+	private boolean isOutOfBounds(int number, int min, int max){
+		if(number < min || number > max){
+			System.out.println("Number out of Bounds");
 			return true;
 		}
 		
-		System.out.println("Value out of bounds!");
 		return false;
 	}
 
