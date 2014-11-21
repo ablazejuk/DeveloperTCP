@@ -25,7 +25,7 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		
 	}
 
-	public List<Paper> getAcceptedPapers(Conference conference) {
+	public List<Paper> getAcceptedPapers(Conference conference) throws NullPointerException  {
 		if (conference.isGraded()){
 			List<Paper> lista_de_papers = new LinkedList<Paper>();
 			for (Paper paper: conference.getGradedPapers())
@@ -38,15 +38,13 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		}
 		else
 		{
-			return conference.getGradedPapers();//está errado!!!
+			throw new NullPointerException();
 			
 		}
-		//TODO: FIND OUT WHERE TO THROW EXCEPTION FOR NULL LISTS!!!
-
-		
+				
 	}
 
-	public List<Paper> getRejectedPapers(Conference conference) {
+	public List<Paper> getRejectedPapers(Conference conference) throws NullPointerException {
 		if (conference.isGraded()){
 			List<Paper> lista_de_papers = new LinkedList<Paper>();
 			for (Paper paper: conference.getGradedPapers())
@@ -59,11 +57,10 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		}
 		else
 		{
-			return conference.getGradedPapers();//está errado!!!
+			throw new NullPointerException();
 			
 		}
-		//TODO: FIND OUT WHERE TO THROW EXCEPTION FOR NULL LISTS!!!
-
+		
 	}
 	
 	

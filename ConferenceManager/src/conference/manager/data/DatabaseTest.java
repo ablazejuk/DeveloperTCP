@@ -22,7 +22,7 @@ public class DatabaseTest {
 	@Test
 	public void testSetAllocated() {
 		List<Conference> unallocatedConferences = database.getUnallocatedConferences();
-		List<Conference> allocatedConferences   = database.geAllocatedConferences();
+		List<Conference> allocatedConferences   = database.getAllocatedConferences();
 		
 		Conference allocatedConf = unallocatedConferences.get(0);
 		database.setAllocated(allocatedConf);

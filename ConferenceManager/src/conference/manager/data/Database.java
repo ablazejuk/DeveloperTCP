@@ -237,8 +237,9 @@ public class Database {
 	public List<Conference> getUnallocatedConferences() {
 		return this.unallocatedConferences;
 	}
-
-	public List<Conference> geAllocatedConferences() {
+	
+	// corrigido typo: estava geAllocatedConferences() sem o 't'
+	public List<Conference> getAllocatedConferences() {
 		return this.allocatedConferences;
 	}
 	

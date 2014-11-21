@@ -27,7 +27,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		
 		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this, database);
 		this.assignGradeCommand = new AssignGradeCommand(this, database);
-		this.selectPapersCommand = new SelectPapersCommand(this);
+		this.selectPapersCommand = new SelectPapersCommand(this, database);
 		
 		this.commands = new HashMap<Integer, Command>();
 		this.commands.put(COMMAND_ALLOCATION, this.allocateCommitteeCommand);
