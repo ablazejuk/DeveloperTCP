@@ -38,10 +38,10 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	public void createAndShow() {
 		this.showMenu();
 	    int option = this.getCommand();
-	    
-	    if (option != COMMAND_EXIT) {
+	    if (option != COMMAND_EXIT){
 	    	this.executeCommand(option);
 	    }
+
 	}
 	
 	private void showMenu() {
@@ -59,7 +59,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	}
 	
 	private int getCommand() {
-		int option = UIUtils.getInstance().readInteger("Select Your Option: ", 1, 3);
+		int option = UIUtils.getInstance().readInteger("Select Your Option: ", 0, 3);
 		System.out.println();
 		
 		return option;
