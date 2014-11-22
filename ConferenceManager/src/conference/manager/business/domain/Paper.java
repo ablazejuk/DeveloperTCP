@@ -1,5 +1,6 @@
 package conference.manager.business.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paper implements Comparable<Paper> {
@@ -20,8 +21,6 @@ public class Paper implements Comparable<Paper> {
 	
 	private boolean allocated;
 	
-	private boolean graded;
-	
 	private boolean accepted;
 	
 	public Paper(int id, String title, Researcher author, ResearchTopic researchTopic) {
@@ -29,6 +28,7 @@ public class Paper implements Comparable<Paper> {
 		this.title = title;
 		this.author = author;
 		this.researchTopic = researchTopic;
+		this.grades = new ArrayList<PaperGrade>();
 	}
 
 	public int getId() {
@@ -68,7 +68,9 @@ public class Paper implements Comparable<Paper> {
 	}
 
 	public boolean isGraded() {
-		return graded;
+		if(reviewers.isEmpty())
+			return true;
+		else return false;
 	}
 
 	public boolean isAccepted() {
@@ -82,6 +84,7 @@ public class Paper implements Comparable<Paper> {
 	public void addGrade(Reviewer reviewer, int grade) {
 		PaperGrade paperGrade = new PaperGrade(reviewer, grade);
 		grades.add(paperGrade);
+		removeReviewer(reviewer);
 	}
 	
 	public void addConference(Conference conference) {
@@ -141,10 +144,19 @@ public class Paper implements Comparable<Paper> {
 		return this.id == paper.getId();
 	}
 	
+	private void removeReviewer(Reviewer reviewer){
+		for(int i = 0; i < reviewers.size(); i++){
+			Reviewer r = reviewers.get(i);
+			if(reviewer.equals(r)){
+				reviewers.remove(r);
+			}
+		}
+	}
+	
 	public String toString() {
 		return this.id + " - " + this.title;
 	}
-
+	
 	@Override
 	public int compareTo(Paper paper) {
 		int compare = this.id - paper.getId();
