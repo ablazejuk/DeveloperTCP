@@ -110,4 +110,11 @@ public class Conference {
 	public String toString() {
 		return this.acronym;
 	}
+
+	public boolean isGraded() {
+		if(this.getUngradedPapers().isEmpty()){
+			return true;
+		}
+		return false;
+	}
 }
