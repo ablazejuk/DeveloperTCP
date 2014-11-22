@@ -17,16 +17,18 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		this.database = database;
 	}
 
-	public List<Conference> getConferences() {
+	public List<Conference> getConferences() throws NullPointerException {
 		List<Conference> conferencias = database.getAllocatedConferences();
+		if (conferencias != null){
 			return conferencias;
-			//TODO: MAKE TRY CATCH THING
-		
+		}else{
+			throw new NullPointerException();
+		}	
 		
 	}
 
-	public List<Paper> getAcceptedPapers(Conference conference) throws NullPointerException  {
-		if (conference.isGraded()){
+	public List<Paper> getAcceptedPapers(Conference conference) /*throws NullPointerException*/  {
+		//.isGraded()
 			List<Paper> lista_de_papers = new LinkedList<Paper>();
 			for (Paper paper: conference.getGradedPapers())
 			{
@@ -36,16 +38,12 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 			}
 			return lista_de_papers;
 		}
-		else
-		{
-			throw new NullPointerException();
-			
-		}
-				
-	}
 
-	public List<Paper> getRejectedPapers(Conference conference) throws NullPointerException {
-		if (conference.isGraded()){
+				
+	
+
+	public List<Paper> getRejectedPapers(Conference conference) /*throws NullPointerException*/ {
+		//.isGraded()
 			List<Paper> lista_de_papers = new LinkedList<Paper>();
 			for (Paper paper: conference.getGradedPapers())
 			{
@@ -55,13 +53,6 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 			}
 			return lista_de_papers;
 		}
-		else
-		{
-			throw new NullPointerException();
-			
-		}
-		
-	}
 	
 	
 	
