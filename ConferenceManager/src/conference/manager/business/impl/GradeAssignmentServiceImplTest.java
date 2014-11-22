@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.business.domain.Reviewer;
@@ -26,11 +27,13 @@ public class GradeAssignmentServiceImplTest {
 	
 	@Test
 	public void testAssignGrade() {
-		//chamar método de alocação de conferências aqui!
-		Conference c = database.geAllocatedConferences().get(0);
-		Paper paper = c.getUngradedPapers().get(0);
+		Conference  conference = database.getUnallocatedConferences().get(0);
+		CommitteeAllocationService committeeAllocationService = new CommitteeAllocationServiceImpl(database);
+		
+		committeeAllocationService.allocatePapers(conference, 1);
+		
+		Paper paper = gradeAssignmentServiceImpl.getUngradedPapers().get(0);
 		Reviewer reviewer = paper.getReviewers().get(0);
-
 		gradeAssignmentServiceImpl.assignGrade(paper, reviewer, 0);
 		assertTrue(paper.isGraded());
 	}

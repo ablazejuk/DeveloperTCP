@@ -34,13 +34,6 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 		}
 		return false;
 	}
-
-	private boolean hasPaperToReviewInConference(Conference conference) {
-		List<Paper> unallocatedPapers = conference.getUnallocatedPapers();
-		boolean stillPapersUnallocated = !unallocatedPapers.isEmpty();
-		
-		return stillPapersUnallocated;
-	}
 	
 	public List<Paper> getPapersToReview() {
 		return papersToReview;

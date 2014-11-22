@@ -43,6 +43,10 @@ public class AssignGradeCommand extends Command {
 		
 		int grade = requestGrade();
 		gradeAssignmentService.assignGrade(selectedPaper, selectedReviewer, grade);
+		
+		System.out.println("End of Grade Assignment");
+		
+		ConferenceManagerInterface.createAndShow();
 	}
 	
 	private List<Paper> getUngradedPapers(){
