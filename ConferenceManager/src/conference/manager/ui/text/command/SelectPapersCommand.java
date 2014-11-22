@@ -1,9 +1,7 @@
 package conference.manager.ui.text.command;
 
 import conference.manager.ui.text.ConferenceManagerTextUI;
-import conference.manager.ui.text.UIUtils;
 
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -27,83 +25,52 @@ public class SelectPapersCommand extends Command {
 	
 
 	public void execute() {
-		Hashtable<Integer, Conference> conferenceHash = this.showConferences(database.getAllocatedConferences());
-		Conference selectedConference = this.selectConference(conferenceHash);
-		this.showAcceptedandRejectedPapers(selectedConference);
-		
-		ConferenceManagerInterface.createAndShow();
-
+		showConferences(database.getAllocatedConferences());
 	}
 	
-	private Hashtable<Integer, Conference> makeHashTable(List<Conference> conferences){
-		Hashtable<Integer, Conference> conferenceHash = new Hashtable<Integer, Conference>();
+	private Hashtable<Integer, String> makeHashTable(List<Conference> conferences){
+		Hashtable<Integer, String> conferenceHash = new Hashtable<Integer, String>();
 		
 		int i =1;
-		try{
+		
 		for (Conference conferencia: conferences){
-			conferenceHash.put(i, conferencia);
+			conferenceHash.put(i, conferencia.getAcronym());
 			i++;
 		}
-		}catch(NullPointerException npte){
-			System.out.println("Nao ha conferencias alocadas!");
-			System.out.println("Pressione qualquer tecla para voltar ao menu.\n");
-			try {
-				System.in.read();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
+		
 		return conferenceHash;
 	}
 
-	
-	private Hashtable<Integer, Conference> showConferences(List<Conference> conferences) {
+	private void showConferences(List<Conference> conferences) {
 		List<Conference> lista_de_conferencias = this.paperSelectionServiceImpl.getConferences();
 				
-		Hashtable<Integer, Conference> conferenceHash;
+		Hashtable<Integer, String> conferenceHash;
 		conferenceHash = makeHashTable(lista_de_conferencias);
 		
 		Enumeration<Integer> numbers;
 		numbers = conferenceHash.keys();
 		
-		
 		while(numbers.hasMoreElements()){
 			int iterator = numbers.nextElement();
 			System.out.println(iterator + ":" +
-					conferenceHash.get(iterator).getAcronym());
+					conferenceHash.get(iterator));
 		}
-		return conferenceHash;
 
 	}
 
-	private Conference selectConference(Hashtable<Integer, Conference> conferenceHash) {
-		Conference selectedConference;
-		int selection = UIUtils.getInstance().readInteger(null);
-		selectedConference = conferenceHash.get(selection);	
-		return selectedConference;
-		
+	private Conference selectConference(List<Conference> conferences) {
+		return null;
 	}
 
-	
-	private void showAcceptedandRejectedPapers(Conference selectedConference) {
-		List<Paper> acceptedPapers = paperSelectionServiceImpl.getAcceptedPapers(selectedConference);
-		List<Paper> rejectedPapers = paperSelectionServiceImpl.getRejectedPapers(selectedConference);
-		printPapers(acceptedPapers, "Papers aceitos:");
-		printPapers(rejectedPapers, "Papers rejeitados:");
-		
+	private void showAcceptedPapers(List<Conference> selectedConference) {
 
 	}
 
-	private boolean arePapersReviewed(Conference selectedConference) { //??? god knows what this is
+	private boolean arePapersReviewed(Conference selectedConference) {
 		return false;
 	}
 
 	private void printPapers(List<Paper> papers, String field) {
-		System.out.println(field);
-		for (Paper paper: papers){
-			System.out.println(paper.getTitle());
-		}
 
 	}
 

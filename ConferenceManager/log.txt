@@ -1,6 +1,7 @@
 Initializing Allocation
 Paper 7 - COTs allocated to the reviewer 1 - João
 Paper 7 - COTs allocated to the reviewer 2 - Ana
+Paper 7 - COTs allocated to the reviewer 7 - Suzana
 Paper 8 - Pointcut allocated to the reviewer 4 - Joana
 Paper 8 - Pointcut allocated to the reviewer 6 - Beatriz
 Paper 9 - Product Derivation allocated to the reviewer 3 - Manoel
@@ -9,4 +10,5 @@ Paper 10 - Architecture Comformance allocated to the reviewer 5 - Miguel
 Paper 10 - Architecture Comformance allocated to the reviewer 4 - Joana
 Paper 11 - Structural Testing allocated to the reviewer 3 - Manoel
 Paper 11 - Structural Testing allocated to the reviewer 5 - Miguel
+Paper 11 - Structural Testing allocated to the reviewer 6 - Beatriz
 End of Allocation
