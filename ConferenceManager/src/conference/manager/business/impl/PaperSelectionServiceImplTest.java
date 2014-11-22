@@ -3,6 +3,8 @@ package conference.manager.business.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import Exceptions.UnallocatedConferencesException;
+import Exceptions.UngradedPapersException;
 import conference.manager.business.domain.Conference;
 import conference.manager.data.*;
 import static org.junit.Assert.*;
@@ -22,21 +24,17 @@ public class PaperSelectionServiceImplTest {
 		paperSelector = new PaperSelectionServiceImpl(db);
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	public void getConferencesNulltest(){
+
+	@Test (expected = UnallocatedConferencesException.class)
+	public void getConferencesNulltest() throws UnallocatedConferencesException{
 		assertFalse(paperSelector.getConferences() == null);
 	}
-	@Test
-	public void getAcceptedpapersNulltest(){
+	@Test (expected = UngradedPapersException.class)
+	public void getAcceptedpapersNulltest() throws UngradedPapersException{
 		assertFalse(paperSelector.getAcceptedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
-	@Test
-	public void getRejectedpapersNulltest(){
+	@Test(expected = UngradedPapersException.class)
+	public void getRejectedpapersNulltest() throws UngradedPapersException{
 		assertFalse(paperSelector.getRejectedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	
