@@ -20,12 +20,10 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 	}
 
 	public List<Conference> getConferences() throws UnallocatedConferencesException {
+		
 		List<Conference> conferencias = database.getAllocatedConferences();
-		if (conferencias != null){
 			return conferencias;
-		}else{
-			throw new UnallocatedConferencesException();
-		}	
+
 		
 	}
 
@@ -45,8 +43,6 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		}
 	}
 
-				
-	
 
 	public List<Paper> getRejectedPapers(Conference conference) throws UngradedPapersException {
 		if(conference.isGraded()){
