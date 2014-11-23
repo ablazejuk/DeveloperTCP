@@ -74,7 +74,10 @@ public class Paper implements Comparable<Paper> {
 	}
 
 	public boolean isAccepted() {
-		return accepted;
+		if(this.getAverageGrade() >= 0){
+			return true;
+		}
+		return false;
 	}
 
 	public void addReviewers(List<Reviewer> reviewers) {

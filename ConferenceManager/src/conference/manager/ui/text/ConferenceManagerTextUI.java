@@ -135,7 +135,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	public void printPapers(List<Paper> papers, String field) {
 		System.out.println(field);
 		for (Paper paper : papers) {
-			System.out.println(paper.getTitle());
+			System.out.println("\n" + paper.getTitle());
 		}
 	}
 
