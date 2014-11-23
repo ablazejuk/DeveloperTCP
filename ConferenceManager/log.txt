@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Initializing Allocation
 Paper 7 - COTs allocated to the reviewer 1 - Jo�o
 Paper 7 - COTs allocated to the reviewer 2 - Ana
@@ -10,3 +11,5 @@ Paper 10 - Architecture Comformance allocated to the reviewer 4 - Joana
 Paper 11 - Structural Testing allocated to the reviewer 3 - Manoel
 Paper 11 - Structural Testing allocated to the reviewer 5 - Miguel
 End of Allocation
+=======
+>>>>>>> 9a1e73899b641716387f08271e4202cff7e07bc9

@@ -42,7 +42,7 @@ public class SelectPapersCommand extends Command {
 			System.out.println(unallocatedConference);
 		} catch (UngradedPapersException ungradedPaper) {
 			System.out.println(ungradedPaper);
-		}
+		} 
 
 		ConferenceManagerInterface.createAndShow();
 

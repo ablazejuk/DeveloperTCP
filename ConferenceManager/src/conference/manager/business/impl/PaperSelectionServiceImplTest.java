@@ -30,11 +30,11 @@ public class PaperSelectionServiceImplTest {
 		assertFalse(paperSelector.getConferences() == null);
 	}
 	@Test (expected = UngradedPapersException.class)
-	public void getAcceptedpapersNulltest() throws UngradedPapersException{
+	public void getAcceptedpapersNulltest() throws UngradedPapersException, UnallocatedConferencesException{
 		assertFalse(paperSelector.getAcceptedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	@Test(expected = UngradedPapersException.class)
-	public void getRejectedpapersNulltest() throws UngradedPapersException{
+	public void getRejectedpapersNulltest() throws UngradedPapersException, UnallocatedConferencesException{
 		assertFalse(paperSelector.getRejectedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	
