@@ -77,4 +77,8 @@ public class PaperTest {
 	public void testInvalidResearchTopicNull() {
 		assertFalse(paper.isValidResearchTopic(null));
 	}
+	@Test
+	public void testisGradedFalse(){
+		//TODO: DO IT LATER
+	}
 }
