@@ -1,0 +1,14 @@
+Initializing Allocation
+Paper 2 - Design Patterns allocated to the reviewer 1 - Jo�o
+Paper 2 - Design Patterns allocated to the reviewer 2 - Ana
+Paper 2 - Design Patterns allocated to the reviewer 7 - Suzana
+Paper 3 - AspectJ allocated to the reviewer 4 - Joana
+Paper 3 - AspectJ allocated to the reviewer 6 - Beatriz
+Paper 4 - Feature Model allocated to the reviewer 3 - Manoel
+Paper 4 - Feature Model allocated to the reviewer 1 - Jo�o
+Paper 5 - Architecture Recovery allocated to the reviewer 5 - Miguel
+Paper 5 - Architecture Recovery allocated to the reviewer 4 - Joana
+Paper 6 - Funcional Testing allocated to the reviewer 3 - Manoel
+Paper 6 - Funcional Testing allocated to the reviewer 5 - Miguel
+Paper 6 - Funcional Testing allocated to the reviewer 6 - Beatriz
+End of Allocation

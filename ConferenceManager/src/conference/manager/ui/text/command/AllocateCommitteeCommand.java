@@ -20,45 +20,33 @@ public class AllocateCommitteeCommand extends Command {
 	private String logFilePath;
 	private PrintWriter logWriter;
 
-	public AllocateCommitteeCommand(
-			ConferenceManagerTextUI ConferenceManagerInterface,
+	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface,
 			Database database) {
 		this.ConferenceManagerInterface = ConferenceManagerInterface;
-		this.committeeAllocationService = new CommitteeAllocationServiceImpl(
-				database);
+		this.committeeAllocationService = new CommitteeAllocationServiceImpl(database);
 
 		this.logFilePath = "log.txt";
 
-		try {
-
-			logWriter = new PrintWriter(logFilePath, "utf-8");
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void execute() {
-		List<Conference> unallocatedConferences = this
-				.getUnallocatedConferences();
+		createNewLogFile();
+
+		List<Conference> unallocatedConferences = this.getUnallocatedConferences();
 
 		if (!unallocatedConferences.isEmpty()) {
-			ConferenceManagerInterface
-					.showUnallocatedConferences(unallocatedConferences);
+			ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
 
 			Conference selectedConference = selectConference();
 			int numReviewers = askNumberReviewers();
 
 			addLogEntry("Initializing Allocation");
 
-			List<Paper> allocatedPapers = allocatePapers(selectedConference,
-					numReviewers);
+			List<Paper> allocatedPapers = allocatePapers(selectedConference, numReviewers);
 
 			addLogEntry(allocatedPapers);
 			addLogEntry("End of Allocation");
-			logWriter.close();
+			closeLogFile();
 
 			ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
 			ConferenceManagerInterface.printLog(logFilePath);
@@ -78,8 +66,7 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	public List<Paper> allocatePapers(Conference conference, int numReviewers) {
-		return committeeAllocationService.allocatePapers(conference,
-				numReviewers);
+		return committeeAllocationService.allocatePapers(conference, numReviewers);
 	}
 
 	private void addLogEntry(String entry) {
@@ -89,17 +76,16 @@ public class AllocateCommitteeCommand extends Command {
 	private void addLogEntry(List<Paper> allocatedPapers) {
 		for (Paper p : allocatedPapers) {
 			for (Reviewer r : p.getReviewers()) {
-				logWriter.println("Paper " + p + " allocated to the reviewer "
-						+ r);
+				logWriter.println("Paper " + p + " allocated to the reviewer " + r);
 			}
 		}
 	}
 
 	private Conference selectConference() {
-		int numOfUnallocatedConferences = committeeAllocationService
-				.getUnallocatedConferences().size();
-		int conferenceNumber = UIUtils.getInstance().readInteger(
-				"Insert Conference Number: ", 1, numOfUnallocatedConferences);
+		int numOfUnallocatedConferences = committeeAllocationService.getUnallocatedConferences()
+				.size();
+		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1,
+				numOfUnallocatedConferences);
 
 		Conference selectedConference = committeeAllocationService
 				.getUnallocatedConferenceByIndex(conferenceNumber - 1);
@@ -108,7 +94,23 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	private int askNumberReviewers() {
-		return UIUtils.getInstance().readInteger(
-				"Select the number of reviewers: ", 2, 5);
+		return UIUtils.getInstance().readInteger("Select the number of reviewers: ", 2, 5);
+	}
+
+	private void createNewLogFile() {
+		try {
+
+			logWriter = new PrintWriter(logFilePath, "utf-8");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void closeLogFile() {
+		logWriter.close();
 	}
 }
