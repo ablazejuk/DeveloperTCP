@@ -19,12 +19,10 @@ public class SelectPapersCommand extends Command {
 	private Database database;
 
 	private PaperSelectionServiceImpl paperSelectionServiceImpl;
-	
+
 	private static final int MINIMUM_HASH_VALUE = 1;
 
-	public SelectPapersCommand(
-			ConferenceManagerTextUI ConferenceManagerInterface,
-			Database database) {
+	public SelectPapersCommand(ConferenceManagerTextUI ConferenceManagerInterface, Database database) {
 		this.ConferenceManagerInterface = ConferenceManagerInterface;
 		this.database = database;
 		this.paperSelectionServiceImpl = new PaperSelectionServiceImpl(this.database);
@@ -34,13 +32,11 @@ public class SelectPapersCommand extends Command {
 		try {
 			List<Conference> conferences;
 			conferences = this.getConferences();
-			
-			Hashtable<Integer, Conference> conferenceHash = this
-					.showConferences(conferences);
-			
-			Conference selectedConference = this
-					.selectConference(conferenceHash);
-			
+
+			Hashtable<Integer, Conference> conferenceHash = this.showConferences(conferences);
+
+			Conference selectedConference = this.selectConference(conferenceHash);
+
 			this.showAcceptedandRejectedPapers(selectedConference);
 
 		} catch (AllocatedConferencesException unallocatedConference) {
@@ -54,11 +50,10 @@ public class SelectPapersCommand extends Command {
 
 	}
 
-	private Hashtable<Integer, Conference> makeHashTable(
-			List<Conference> conferences) {
+	private Hashtable<Integer, Conference> makeHashTable(List<Conference> conferences) {
 		Hashtable<Integer, Conference> conferenceHash = new Hashtable<Integer, Conference>();
 
-		int i = MINIMUM_HASH_VALUE; 
+		int i = MINIMUM_HASH_VALUE;
 
 		for (Conference conferencia : conferences) {
 			conferenceHash.put(i, conferencia);
@@ -68,8 +63,8 @@ public class SelectPapersCommand extends Command {
 		return conferenceHash;
 	}
 
-	private Hashtable<Integer, Conference> showConferences(
-			List<Conference> conferences) throws AllocatedConferencesException {
+	private Hashtable<Integer, Conference> showConferences(List<Conference> conferences)
+			throws AllocatedConferencesException {
 
 		List<Conference> lista_de_conferencias = new ArrayList<>();
 
@@ -83,11 +78,11 @@ public class SelectPapersCommand extends Command {
 		return conferenceHash;
 	}
 
-	private Conference selectConference(
-			Hashtable<Integer, Conference> conferenceHash) {
-		
+	private Conference selectConference(Hashtable<Integer, Conference> conferenceHash) {
+
 		Conference selectedConference;
-		int selection = UIUtils.getInstance().readInteger("\nPlease select a conference", MINIMUM_HASH_VALUE, conferenceHash.size()); 
+		int selection = UIUtils.getInstance().readInteger("\nPlease select a conference",
+				MINIMUM_HASH_VALUE, conferenceHash.size());
 		selectedConference = conferenceHash.get(selection);
 		return selectedConference;
 
@@ -99,16 +94,13 @@ public class SelectPapersCommand extends Command {
 				.getAcceptedPapers(selectedConference);
 		List<Paper> rejectedPapers = this.paperSelectionServiceImpl
 				.getRejectedPapers(selectedConference);
-		ConferenceManagerInterface.printPapers(acceptedPapers,
-				"*Accepted Papers*");
-		ConferenceManagerInterface.printPapers(rejectedPapers,
-				"*Rejected Papers*");
+		ConferenceManagerInterface.printPapers(acceptedPapers, "*Accepted Papers*");
+		ConferenceManagerInterface.printPapers(rejectedPapers, "*Rejected Papers*");
 
 	}
-	
-	private List<Conference> getConferences() throws AllocatedConferencesException  {
-		return this.paperSelectionServiceImpl.getConferences(); 
-	}
 
+	private List<Conference> getConferences() throws AllocatedConferencesException {
+		return this.paperSelectionServiceImpl.getConferences();
+	}
 
 }

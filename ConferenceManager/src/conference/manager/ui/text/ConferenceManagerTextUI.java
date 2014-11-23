@@ -33,8 +33,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	public ConferenceManagerTextUI() {
 		Database database = new Database();
 
-		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this,
-				database);
+		this.allocateCommitteeCommand = new AllocateCommitteeCommand(this, database);
 		this.assignGradeCommand = new AssignGradeCommand(this, database);
 		this.selectPapersCommand = new SelectPapersCommand(this, database);
 
@@ -68,8 +67,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	}
 
 	private int getCommand() {
-		int option = UIUtils.getInstance().readInteger("Select Your Option: ",
-				0, 3);
+		int option = UIUtils.getInstance().readInteger("Select Your Option: ", 0, 3);
 		System.out.println();
 
 		return option;
@@ -80,8 +78,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		command.execute();
 	}
 
-	public void showUnallocatedConferences(
-			List<Conference> unallocatedConferences) {
+	public void showUnallocatedConferences(List<Conference> unallocatedConferences) {
 		System.out.println("*Unallocated Conferences*");
 		int cont = 1;
 		for (Conference c : unallocatedConferences) {
@@ -126,35 +123,33 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 
 		while (numbers.hasMoreElements()) {
 			int iterator = numbers.nextElement();
-			System.out.println(iterator + " - "
-					+ conferenceHash.get(iterator).getAcronym());
+			System.out.println(iterator + " - " + conferenceHash.get(iterator).getAcronym());
 		}
 
 	}
-	
+
 	public void printPapers(List<Paper> papers, String field) {
-		System.out.println("\n" + field + "\n");
+		System.out.println("\n" + field);
 		for (Paper paper : papers) {
 			System.out.println(paper.getTitle());
 		}
 	}
-	
+
 	public void printLog(String logFilePath) {
 		try {
-			
+
 			BufferedReader br = new BufferedReader(new FileReader(logFilePath));
-			
+
 			System.out.println();
 			for (String line = br.readLine(); line != null; line = br.readLine()) {
 				System.out.println(line);
 			}
 			System.out.println();
-			
+
 			br.close();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 }
-
