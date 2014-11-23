@@ -46,7 +46,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 
 	public void createAndShow() {
 		this.showMenu();
-		int option = this.getCommand();
+		int option = getCommand();
 		if (option != COMMAND_EXIT) {
 			this.executeCommand(option);
 		}
