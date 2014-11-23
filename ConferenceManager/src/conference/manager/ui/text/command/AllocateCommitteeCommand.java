@@ -15,21 +15,24 @@ import conference.manager.ui.text.ConferenceManagerTextUI;
 import conference.manager.ui.text.UIUtils;
 
 public class AllocateCommitteeCommand extends Command {
-	
+
 	private CommitteeAllocationService committeeAllocationService;
 	private String logFilePath;
 	private PrintWriter logWriter;
-	
-	public AllocateCommitteeCommand(ConferenceManagerTextUI ConferenceManagerInterface, Database database) {
+
+	public AllocateCommitteeCommand(
+			ConferenceManagerTextUI ConferenceManagerInterface,
+			Database database) {
 		this.ConferenceManagerInterface = ConferenceManagerInterface;
-		this.committeeAllocationService = new CommitteeAllocationServiceImpl(database);
-		
+		this.committeeAllocationService = new CommitteeAllocationServiceImpl(
+				database);
+
 		this.logFilePath = "log.txt";
-		
+
 		try {
-		
+
 			logWriter = new PrintWriter(logFilePath, "utf-8");
-		
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -38,23 +41,31 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	public void execute() {
-		List<Conference> unallocatedConferences = this.getUnallocatedConferences();
-		ConferenceManagerInterface.showUnallocatedConferences(unallocatedConferences);
-		
-		Conference  selectedConference = selectConference();
-		int         numReviewers       = askNumberReviewers();
-		
-		addLogEntry("Initializing Allocation");
-		
-		List<Paper> allocatedPapers = allocatePapers(selectedConference, numReviewers);
-		
-		addLogEntry(allocatedPapers);
-		addLogEntry("End of Allocation");
-		logWriter.close();
-		
-		ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
-		ConferenceManagerInterface.printLog(logFilePath);
-		
+		List<Conference> unallocatedConferences = this
+				.getUnallocatedConferences();
+
+		if (!unallocatedConferences.isEmpty()) {
+			ConferenceManagerInterface
+					.showUnallocatedConferences(unallocatedConferences);
+
+			Conference selectedConference = selectConference();
+			int numReviewers = askNumberReviewers();
+
+			addLogEntry("Initializing Allocation");
+
+			List<Paper> allocatedPapers = allocatePapers(selectedConference,
+					numReviewers);
+
+			addLogEntry(allocatedPapers);
+			addLogEntry("End of Allocation");
+			logWriter.close();
+
+			ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
+			ConferenceManagerInterface.printLog(logFilePath);
+		} else {
+			System.out.println("\nNo more Conferences to allocate.\n");
+		}
+
 		ConferenceManagerInterface.createAndShow();
 	}
 
@@ -67,31 +78,37 @@ public class AllocateCommitteeCommand extends Command {
 	}
 
 	public List<Paper> allocatePapers(Conference conference, int numReviewers) {
-		return committeeAllocationService.allocatePapers(conference, numReviewers);
+		return committeeAllocationService.allocatePapers(conference,
+				numReviewers);
 	}
-	
+
 	private void addLogEntry(String entry) {
 		logWriter.println(entry);
 	}
-	
+
 	private void addLogEntry(List<Paper> allocatedPapers) {
 		for (Paper p : allocatedPapers) {
 			for (Reviewer r : p.getReviewers()) {
-				logWriter.println("Paper " + p + " allocated to the reviewer " + r);
+				logWriter.println("Paper " + p + " allocated to the reviewer "
+						+ r);
 			}
 		}
- 	}
+	}
 
 	private Conference selectConference() {
-		int numOfUnallocatedConferences = committeeAllocationService.getUnallocatedConferences().size();
-		int conferenceNumber            = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
-		
-		Conference selectedConference = committeeAllocationService.getUnallocatedConferenceByIndex(conferenceNumber - 1);
-		
+		int numOfUnallocatedConferences = committeeAllocationService
+				.getUnallocatedConferences().size();
+		int conferenceNumber = UIUtils.getInstance().readInteger(
+				"Insert Conference Number: ", 1, numOfUnallocatedConferences);
+
+		Conference selectedConference = committeeAllocationService
+				.getUnallocatedConferenceByIndex(conferenceNumber - 1);
+
 		return selectedConference;
 	}
 
 	private int askNumberReviewers() {
-		return UIUtils.getInstance().readInteger("Select the number of reviewers: ", 2, 5);
+		return UIUtils.getInstance().readInteger(
+				"Select the number of reviewers: ", 2, 5);
 	}
 }
