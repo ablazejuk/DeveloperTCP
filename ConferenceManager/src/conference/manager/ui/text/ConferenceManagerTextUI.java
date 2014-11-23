@@ -126,16 +126,16 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 
 		while (numbers.hasMoreElements()) {
 			int iterator = numbers.nextElement();
-			System.out.println(iterator + ":"
+			System.out.println(iterator + " - "
 					+ conferenceHash.get(iterator).getAcronym());
 		}
 
 	}
 	
 	public void printPapers(List<Paper> papers, String field) {
-		System.out.println(field);
+		System.out.println("\n" + field + "\n");
 		for (Paper paper : papers) {
-			System.out.println("\n" + paper.getTitle());
+			System.out.println(paper.getTitle());
 		}
 	}
 	
