@@ -1,5 +1,6 @@
 package conference.manager.data;
 
+import Exceptions.UnallocatedConferencesException;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.business.domain.University;
 import conference.manager.business.domain.ResearchTopic;
@@ -239,8 +240,14 @@ public class Database {
 	}
 	
 	// corrigido typo: estava geAllocatedConferences() sem o 't'
-	public List<Conference> getAllocatedConferences() {
-		return this.allocatedConferences;
+	public List<Conference> getAllocatedConferences() throws UnallocatedConferencesException {		
+		if(this.unallocatedConferences.isEmpty()){
+			return this.allocatedConferences;
+		}
+		else{
+			throw new UnallocatedConferencesException();
+		}
+		
 	}
 	
 	public List<ResearchTopic> getResearchTopics() {

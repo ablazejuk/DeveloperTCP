@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import Exceptions.UnallocatedConferencesException;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 
@@ -20,7 +21,7 @@ public class DatabaseTest {
 	}
 	
 	@Test
-	public void testSetAllocated() {
+	public void testSetAllocated() throws UnallocatedConferencesException {
 		List<Conference> unallocatedConferences = database.getUnallocatedConferences();
 		List<Conference> allocatedConferences   = database.getAllocatedConferences();
 		
