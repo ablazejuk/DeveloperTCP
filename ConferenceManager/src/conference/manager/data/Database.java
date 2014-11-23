@@ -270,15 +270,11 @@ public class Database {
 	public void setAllocated(Conference conference) {
 		this.allocatedConferences.add(conference);
 		
-		List<Conference> newUnallocatedConferences = new ArrayList<>();
-		
 		for (int i = 0; i < this.unallocatedConferences.size(); i++) {
 			if (this.unallocatedConferences.get(i).equals(conference)) {
 				this.unallocatedConferences.remove(i);
 			}
 		}
-		
-		this.unallocatedConferences = newUnallocatedConferences;
 	}
 
 	public void setUngraded(Paper paper) {

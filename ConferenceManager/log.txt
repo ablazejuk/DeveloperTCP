@@ -1,12 +1,12 @@
 Initializing Allocation
-Paper 2 - Design Patterns allocated to the reviewer 1 - Jo�o
-Paper 2 - Design Patterns allocated to the reviewer 2 - Ana
-Paper 3 - AspectJ allocated to the reviewer 4 - Joana
-Paper 3 - AspectJ allocated to the reviewer 6 - Beatriz
-Paper 4 - Feature Model allocated to the reviewer 3 - Manoel
-Paper 4 - Feature Model allocated to the reviewer 1 - Jo�o
-Paper 5 - Architecture Recovery allocated to the reviewer 5 - Miguel
-Paper 5 - Architecture Recovery allocated to the reviewer 4 - Joana
-Paper 6 - Funcional Testing allocated to the reviewer 3 - Manoel
-Paper 6 - Funcional Testing allocated to the reviewer 5 - Miguel
+Paper 7 - COTs allocated to the reviewer 1 - Jo�o
+Paper 7 - COTs allocated to the reviewer 2 - Ana
+Paper 8 - Pointcut allocated to the reviewer 4 - Joana
+Paper 8 - Pointcut allocated to the reviewer 6 - Beatriz
+Paper 9 - Product Derivation allocated to the reviewer 3 - Manoel
+Paper 9 - Product Derivation allocated to the reviewer 1 - Jo�o
+Paper 10 - Architecture Comformance allocated to the reviewer 5 - Miguel
+Paper 10 - Architecture Comformance allocated to the reviewer 4 - Joana
+Paper 11 - Structural Testing allocated to the reviewer 3 - Manoel
+Paper 11 - Structural Testing allocated to the reviewer 5 - Miguel
 End of Allocation
