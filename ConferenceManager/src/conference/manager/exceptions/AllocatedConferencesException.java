@@ -1,7 +1,6 @@
-package Exceptions;
+package conference.manager.exceptions;
 
-public class UnallocatedConferencesException extends Exception {
-
+public class AllocatedConferencesException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	

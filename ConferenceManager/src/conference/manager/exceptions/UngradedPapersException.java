@@ -1,4 +1,4 @@
-package Exceptions;
+package conference.manager.exceptions;
 
 public class UngradedPapersException extends Exception {
 

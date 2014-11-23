@@ -1,6 +1,5 @@
 package conference.manager.data;
 
-import Exceptions.UnallocatedConferencesException;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.business.domain.University;
 import conference.manager.business.domain.ResearchTopic;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conference.manager.business.domain.Paper;
+import conference.manager.exceptions.AllocatedConferencesException;
 
 public class Database {
 
@@ -239,11 +239,11 @@ public class Database {
 		return this.unallocatedConferences;
 	}
 	
-	public List<Conference> getAllocatedConferences() throws UnallocatedConferencesException {		
-		if(this.unallocatedConferences.isEmpty()){
+	public List<Conference> getAllocatedConferences() throws AllocatedConferencesException {		
+		if(!allocatedConferences.isEmpty()) {
 			return this.allocatedConferences;
 		} else {
-			throw new UnallocatedConferencesException();
+			throw new AllocatedConferencesException();
 		}	
 	}
 	

@@ -1,8 +1,12 @@
 package conference.manager.ui.text;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.business.domain.Reviewer;
@@ -105,6 +109,24 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 			for (Reviewer r : p.getReviewers()) {
 				System.out.println("    " + r);
 			}
+		}
+	}
+	
+	public void printLog(String logFilePath) {
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(logFilePath));
+			
+			System.out.println();
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				System.out.println(line);
+			}
+			System.out.println();
+			
+			br.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
