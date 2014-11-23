@@ -241,7 +241,7 @@ public class Database {
 	
 	// corrigido typo: estava geAllocatedConferences() sem o 't'
 	public List<Conference> getAllocatedConferences() throws UnallocatedConferencesException {		
-		if(!this.allocatedConferences.isEmpty()){
+		if(this.unallocatedConferences.isEmpty()){
 			return this.allocatedConferences;
 		}
 		else{

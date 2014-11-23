@@ -2,7 +2,6 @@ package conference.manager.ui.text.command;
 
 import Exceptions.UnallocatedConferencesException;
 import Exceptions.UngradedPapersException;
-import conference.manager.ConferenceManager;
 import conference.manager.ui.text.ConferenceManagerTextUI;
 import conference.manager.ui.text.UIUtils;
 
@@ -39,12 +38,11 @@ public class SelectPapersCommand extends Command {
 			Conference selectedConference = this
 					.selectConference(conferenceHash);
 			this.showAcceptedandRejectedPapers(selectedConference);
-
 		} catch (UnallocatedConferencesException unallocatedConference) {
 			System.out.println(unallocatedConference);
 		} catch (UngradedPapersException ungradedPaper) {
 			System.out.println(ungradedPaper);
-		}
+		} 
 
 		ConferenceManagerInterface.createAndShow();
 
@@ -64,18 +62,26 @@ public class SelectPapersCommand extends Command {
 		return conferenceHash;
 	}
 
-	private Hashtable<Integer, Conference> showConferences(
-			List<Conference> conferences)
-			throws UnallocatedConferencesException {
+	private Hashtable<Integer, Conference> showConferences (
+			List<Conference> conferences) throws UnallocatedConferencesException {
 
 		List<Conference> lista_de_conferencias = new LinkedList<Conference>();
 
 		lista_de_conferencias = this.paperSelectionServiceImpl.getConferences();
 
+		ConferenceManagerInterface.createAndShow();
+
 		Hashtable<Integer, Conference> conferenceHash;
 		conferenceHash = makeHashTable(lista_de_conferencias);
 
-		ConferenceManagerInterface.showConferences(conferenceHash);
+		Enumeration<Integer> numbers;
+		numbers = conferenceHash.keys();
+
+		while (numbers.hasMoreElements()) {
+			int iterator = numbers.nextElement();
+			System.out.println(iterator + ":"
+					+ conferenceHash.get(iterator).getAcronym());
+		}
 
 		return conferenceHash;
 	}
@@ -95,8 +101,8 @@ public class SelectPapersCommand extends Command {
 				.getAcceptedPapers(selectedConference);
 		List<Paper> rejectedPapers = paperSelectionServiceImpl
 				.getRejectedPapers(selectedConference);
-		ConferenceManagerInterface.printPapers(acceptedPapers, "Papers aceitos:");
-		ConferenceManagerInterface.printPapers(rejectedPapers, "Papers rejeitados:");
+		printPapers(acceptedPapers, "Papers aceitos:");
+		printPapers(rejectedPapers, "Papers rejeitados:");
 
 	}
 
@@ -105,7 +111,12 @@ public class SelectPapersCommand extends Command {
 	 * god knows what this is return false; }
 	 */
 
+	private void printPapers(List<Paper> papers, String field) {
+		System.out.println(field);
+		for (Paper paper : papers) {
+			System.out.println(paper.getTitle());
+		}
 
-	
+	}
 
 }
