@@ -44,10 +44,10 @@ public class SelectPapersCommand extends Command {
 			this.showAcceptedandRejectedPapers(selectedConference);
 
 		} catch (AllocatedConferencesException unallocatedConference) {
-			System.out.println(unallocatedConference);
+			System.out.println("\n" + unallocatedConference + "\n");
 
 		} catch (UngradedPapersException ungradedPaper) {
-			System.out.println(ungradedPaper);
+			System.out.println("\n" + ungradedPaper + "\n");
 		}
 
 		ConferenceManagerInterface.createAndShow();
@@ -87,7 +87,7 @@ public class SelectPapersCommand extends Command {
 			Hashtable<Integer, Conference> conferenceHash) {
 		
 		Conference selectedConference;
-		int selection = UIUtils.getInstance().readInteger("Please select a conference", MINIMUM_HASH_VALUE, conferenceHash.size()); 
+		int selection = UIUtils.getInstance().readInteger("\nPlease select a conference", MINIMUM_HASH_VALUE, conferenceHash.size()); 
 		selectedConference = conferenceHash.get(selection);
 		return selectedConference;
 
@@ -100,9 +100,9 @@ public class SelectPapersCommand extends Command {
 		List<Paper> rejectedPapers = this.paperSelectionServiceImpl
 				.getRejectedPapers(selectedConference);
 		ConferenceManagerInterface.printPapers(acceptedPapers,
-				"Papers aceitos:");
+				"*Accepted Papers*");
 		ConferenceManagerInterface.printPapers(rejectedPapers,
-				"Papers rejeitados:");
+				"*Rejected Papers*");
 
 	}
 	
@@ -110,9 +110,5 @@ public class SelectPapersCommand extends Command {
 		return this.paperSelectionServiceImpl.getConferences(); 
 	}
 
-	/*
-	 * private boolean arePapersReviewed(Conference selectedConference) { //???
-	 * god knows what this is return false; }
-	 */
 
 }
