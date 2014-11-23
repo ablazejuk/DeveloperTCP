@@ -9,6 +9,7 @@ public class UniversityTest {
 	
 	private University u1;
 	private University u2;
+	
 	@Before
 	public void setUp() {
 		u1 = new University("UFRGS");

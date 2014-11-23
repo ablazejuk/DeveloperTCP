@@ -101,7 +101,7 @@ public class Database {
 		carlosInterests.add(softwareReuse);
 		carlosInterests.add(modularity);
 		
-		Reviewer joao    = new Reviewer(1, "João", ufrgs, joaoInterests);
+		Reviewer joao    = new Reviewer(1, "Joï¿½o", ufrgs, joaoInterests);
 		Reviewer ana     = new Reviewer(2, "Ana", usp, anaInterests);
 		Reviewer manoel  = new Reviewer(3, "Manoel", ufrgs, manoelInterests);
 		Reviewer joana   = new Reviewer(4, "Joana", ufrj, joanaInterests);
@@ -238,7 +238,6 @@ public class Database {
 		return this.unallocatedConferences;
 	}
 	
-	// corrigido typo: estava geAllocatedConferences() sem o 't'
 	public List<Conference> getAllocatedConferences() {
 		return this.allocatedConferences;
 	}

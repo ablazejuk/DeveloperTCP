@@ -112,7 +112,7 @@ public class Conference {
 	}
 
 	public boolean isGraded() {
-		if(this.getUngradedPapers().isEmpty()){
+		if(this.getUngradedPapers().isEmpty() && this.getUnallocatedPapers().isEmpty()){
 			return true;
 		}
 		return false;

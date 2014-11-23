@@ -96,6 +96,8 @@ public class AllocateCommitteeCommand extends Command {
 			}
 			System.out.println();
 			
+			br.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +105,7 @@ public class AllocateCommitteeCommand extends Command {
 
 	private Conference selectConference() {
 		int numOfUnallocatedConferences = committeeAllocationService.getUnallocatedConferences().size();
-		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
+		int conferenceNumber            = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
 		
 		Conference selectedConference = committeeAllocationService.getUnallocatedConferenceByIndex(conferenceNumber - 1);
 		
