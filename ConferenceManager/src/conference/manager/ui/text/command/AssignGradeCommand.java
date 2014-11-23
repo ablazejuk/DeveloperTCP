@@ -22,29 +22,35 @@ public class AssignGradeCommand extends Command {
 
 	public void execute() {
 		List<Paper> ungradedPapers = getUngradedPapers();
-		showPapers(ungradedPapers);
-		int paperId;
-		int reviewerId;
 		
-		do{
-			paperId = UIUtils.getInstance().readInteger("Insert a valid paper id: ");
-		} while(!validatePaperId(ungradedPapers, paperId));
-		
-		Paper selectedPaper = selectPaper(ungradedPapers, paperId);
-		
-		List<Reviewer> reviewers = getReviewers(selectedPaper);
-		showReviewers(reviewers);
-		
-		do{
-			reviewerId = UIUtils.getInstance().readInteger("Insert a valid reviewer id: ");
-		} while(!validateReviewerId(reviewers, reviewerId));
-		
-		Reviewer selectedReviewer = selectReviewer(reviewers, reviewerId);
-		
-		int grade = requestGrade();
-		gradeAssignmentService.assignGrade(selectedPaper, selectedReviewer, grade);
-		
-		System.out.println("End of Grade Assignment");
+		if(!thereIsAllocatedPapers(ungradedPapers)){
+			System.out.println("There is no paper allocated to be graded!");
+		}
+		else{
+			showPapers(ungradedPapers);
+			int paperId;
+			int reviewerId;
+			
+			do{
+				paperId = UIUtils.getInstance().readInteger("Insert a valid paper id: ");
+			} while(!validatePaperId(ungradedPapers, paperId));
+			
+			Paper selectedPaper = selectPaper(ungradedPapers, paperId);
+			
+			List<Reviewer> reviewers = getReviewers(selectedPaper);
+			showReviewers(reviewers);
+			
+			do{
+				reviewerId = UIUtils.getInstance().readInteger("Insert a valid reviewer id: ");
+			} while(!validateReviewerId(reviewers, reviewerId));
+			
+			Reviewer selectedReviewer = selectReviewer(reviewers, reviewerId);
+			
+			int grade = requestGrade();
+			gradeAssignmentService.assignGrade(selectedPaper, selectedReviewer, grade);
+			
+			System.out.println("End of Grade Assignment");
+		}
 		
 		ConferenceManagerInterface.createAndShow();
 	}
@@ -87,6 +93,13 @@ public class AssignGradeCommand extends Command {
 
 	private int requestGrade() {
 		return UIUtils.getInstance().readInteger("Insert a valid grade: ", -3, 3);
+	}
+	
+	private boolean thereIsAllocatedPapers(List<Paper> papers){
+		if(!papers.isEmpty())
+			return true;
+		else
+			return false;
 	}
 	
 	private boolean validatePaperId(List<Paper> papers, int id) {
