@@ -7,6 +7,8 @@ import conference.manager.data.Database;
 import conference.manager.exceptions.AllocatedConferencesException;
 import conference.manager.exceptions.UngradedPapersException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,9 +20,11 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		this.database = database;
 	}
 
+	public List<Conference> getConferences()
+			throws AllocatedConferencesException {
+		List<Conference> conferencias;
+		conferencias = this.database.getAllocatedConferences();
 
-	public List<Conference> getConferences() throws AllocatedConferencesException {
-		List<Conference> conferencias = database.getAllocatedConferences();
 		return conferencias;
 
 	}

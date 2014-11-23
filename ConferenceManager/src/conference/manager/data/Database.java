@@ -7,6 +7,7 @@ import conference.manager.business.domain.Researcher;
 import conference.manager.business.domain.Conference;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import conference.manager.business.domain.Paper;
