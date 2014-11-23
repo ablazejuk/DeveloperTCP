@@ -67,6 +67,7 @@ public class UIUtils {
 	        number = Integer.parseInt(input);
 	    } catch (NumberFormatException ex) {
 	       System.out.println("Not a number!");
+	       readInteger(field);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -91,6 +92,7 @@ public class UIUtils {
 		        number = Integer.parseInt(input);
 		    } catch (NumberFormatException ex) {
 		       System.out.println("Not a number!");
+		       readInteger(field, min, max);
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    } 
@@ -111,6 +113,7 @@ public class UIUtils {
 	        number = Long.parseLong(input);
 	    } catch (NumberFormatException ex) {
 	       System.out.println("Not a number!");
+	       readLong(field);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

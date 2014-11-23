@@ -21,8 +21,6 @@ public class Paper implements Comparable<Paper> {
 	
 	private boolean allocated;
 	
-	private boolean accepted;
-	
 	public Paper(int id, String title, Researcher author, ResearchTopic researchTopic) {
 		this.id = id;
 		this.title = title;
@@ -74,7 +72,10 @@ public class Paper implements Comparable<Paper> {
 	}
 
 	public boolean isAccepted() {
-		return accepted;
+		if(this.getAverageGrade() >= 0){
+			return true;
+		}
+		return false;
 	}
 
 	public void addReviewers(List<Reviewer> reviewers) {
