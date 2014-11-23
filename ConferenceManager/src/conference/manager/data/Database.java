@@ -239,6 +239,7 @@ public class Database {
 		return this.unallocatedConferences;
 	}
 	
+
 	public List<Conference> getAllocatedConferences() throws AllocatedConferencesException {		
 		if(!allocatedConferences.isEmpty()) {
 			return this.allocatedConferences;
