@@ -63,9 +63,11 @@ public class Conference {
 	}
 	
 	private void removeFromUngradedPapers(Paper selectedPaper) {
-		for(Paper p : ungradedPapers){
-			if(p.equals(selectedPaper))
+		for(int i = 0; i < ungradedPapers.size(); i++){
+			Paper p = ungradedPapers.get(i);
+			if(selectedPaper.equals(p)){
 				ungradedPapers.remove(p);
+			}
 		}
 	}
 	
@@ -110,7 +112,7 @@ public class Conference {
 	}
 
 	public boolean isGraded() {
-		if(this.getUngradedPapers().isEmpty()){
+		if(this.getUngradedPapers().isEmpty() && this.getUnallocatedPapers().isEmpty()){
 			return true;
 		}
 		return false;

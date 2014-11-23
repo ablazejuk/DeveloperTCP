@@ -1,12 +1,11 @@
 package conference.manager.business.impl;
 
-import Exceptions.UnallocatedConferencesException;
-import Exceptions.UngradedPapersException;
 import conference.manager.business.PaperSelectionService;
-import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.data.Database;
+import conference.manager.exceptions.AllocatedConferencesException;
+import conference.manager.exceptions.UngradedPapersException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,9 +18,8 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 		this.database = database;
 	}
 
-	public List<Conference> getConferences()
-			throws UnallocatedConferencesException {
-		
+
+	public List<Conference> getConferences() throws AllocatedConferencesException {
 		List<Conference> conferencias = database.getAllocatedConferences();
 		return conferencias;
 

@@ -1,6 +1,5 @@
 package conference.manager.data;
 
-import Exceptions.UnallocatedConferencesException;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.business.domain.University;
 import conference.manager.business.domain.ResearchTopic;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conference.manager.business.domain.Paper;
+import conference.manager.exceptions.AllocatedConferencesException;
 
 public class Database {
 
@@ -102,7 +102,7 @@ public class Database {
 		carlosInterests.add(softwareReuse);
 		carlosInterests.add(modularity);
 		
-		Reviewer joao    = new Reviewer(1, "João", ufrgs, joaoInterests);
+		Reviewer joao    = new Reviewer(1, "Joï¿½o", ufrgs, joaoInterests);
 		Reviewer ana     = new Reviewer(2, "Ana", usp, anaInterests);
 		Reviewer manoel  = new Reviewer(3, "Manoel", ufrgs, manoelInterests);
 		Reviewer joana   = new Reviewer(4, "Joana", ufrj, joanaInterests);
@@ -239,15 +239,13 @@ public class Database {
 		return this.unallocatedConferences;
 	}
 	
-	// corrigido typo: estava geAllocatedConferences() sem o 't'
-	public List<Conference> getAllocatedConferences() throws UnallocatedConferencesException {		
-		if(!this.allocatedConferences.isEmpty()){
+
+	public List<Conference> getAllocatedConferences() throws AllocatedConferencesException {		
+		if(!allocatedConferences.isEmpty()) {
 			return this.allocatedConferences;
-		}
-		else{
-			throw new UnallocatedConferencesException();
-		}
-		
+		} else {
+			throw new AllocatedConferencesException();
+		}	
 	}
 	
 	public List<ResearchTopic> getResearchTopics() {
@@ -273,15 +271,11 @@ public class Database {
 	public void setAllocated(Conference conference) {
 		this.allocatedConferences.add(conference);
 		
-		List<Conference> newUnallocatedConferences = new ArrayList<>();
-		
 		for (int i = 0; i < this.unallocatedConferences.size(); i++) {
 			if (this.unallocatedConferences.get(i).equals(conference)) {
 				this.unallocatedConferences.remove(i);
 			}
 		}
-		
-		this.unallocatedConferences = newUnallocatedConferences;
 	}
 
 	public void setUngraded(Paper paper) {

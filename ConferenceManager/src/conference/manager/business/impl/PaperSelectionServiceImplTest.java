@@ -1,12 +1,9 @@
 package conference.manager.business.impl;
 
-import java.util.LinkedList;
-import java.util.List;
 
-import Exceptions.UnallocatedConferencesException;
-import Exceptions.UngradedPapersException;
-import conference.manager.business.domain.Conference;
 import conference.manager.data.*;
+import conference.manager.exceptions.AllocatedConferencesException;
+import conference.manager.exceptions.UngradedPapersException;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -25,16 +22,16 @@ public class PaperSelectionServiceImplTest {
 	}
 
 
-	@Test (expected = UnallocatedConferencesException.class)
-	public void getConferencesNulltest() throws UnallocatedConferencesException{
+	@Test (expected = AllocatedConferencesException.class)
+	public void getConferencesNulltest() throws AllocatedConferencesException{
 		assertFalse(paperSelector.getConferences() == null);
 	}
 	@Test (expected = UngradedPapersException.class)
-	public void getAcceptedpapersNulltest() throws UngradedPapersException, UnallocatedConferencesException{
+	public void getAcceptedpapersNulltest() throws UngradedPapersException, AllocatedConferencesException{
 		assertFalse(paperSelector.getAcceptedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	@Test(expected = UngradedPapersException.class)
-	public void getRejectedpapersNulltest() throws UngradedPapersException, UnallocatedConferencesException{
+	public void getRejectedpapersNulltest() throws UngradedPapersException, AllocatedConferencesException{
 		assertFalse(paperSelector.getRejectedPapers(db.getAllocatedConferences().get(0)) == null);
 	}
 	

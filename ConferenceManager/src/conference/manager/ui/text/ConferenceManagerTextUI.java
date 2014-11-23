@@ -1,16 +1,20 @@
 package conference.manager.ui.text;
 
 import java.util.Enumeration;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import Exceptions.UnallocatedConferencesException;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
+import conference.manager.exceptions.AllocatedConferencesException;
 import conference.manager.ui.text.command.AllocateCommitteeCommand;
 import conference.manager.ui.ConferenceManagerUI;
 import conference.manager.ui.text.command.Command;
@@ -116,7 +120,7 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 	}
 
 	public void showConferences(Hashtable<Integer, Conference> conferenceHash)
-			throws UnallocatedConferencesException {
+			throws AllocatedConferencesException {
 		Enumeration<Integer> numbers;
 		numbers = conferenceHash.keys();
 
@@ -135,9 +139,24 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 		}
 	}
 
+
 	
-	
-	
-	
-	
+	public void printLog(String logFilePath) {
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(logFilePath));
+			
+			System.out.println();
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				System.out.println(line);
+			}
+			System.out.println();
+			
+			br.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
+

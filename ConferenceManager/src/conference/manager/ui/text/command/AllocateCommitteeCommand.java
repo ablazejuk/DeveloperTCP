@@ -1,9 +1,6 @@
 package conference.manager.ui.text.command;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -56,7 +53,7 @@ public class AllocateCommitteeCommand extends Command {
 		logWriter.close();
 		
 		ConferenceManagerInterface.showAllocatedPapers(allocatedPapers);
-		printLog();
+		ConferenceManagerInterface.printLog(logFilePath);
 		
 		ConferenceManagerInterface.createAndShow();
 	}
@@ -84,26 +81,10 @@ public class AllocateCommitteeCommand extends Command {
 			}
 		}
  	}
-	
-	private void printLog() {
-		try {
-			
-			BufferedReader br = new BufferedReader(new FileReader(logFilePath));
-			
-			System.out.println();
-			for (String line = br.readLine(); line != null; line = br.readLine()) {
-				System.out.println(line);
-			}
-			System.out.println();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	private Conference selectConference() {
 		int numOfUnallocatedConferences = committeeAllocationService.getUnallocatedConferences().size();
-		int conferenceNumber = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
+		int conferenceNumber            = UIUtils.getInstance().readInteger("Insert Conference Number: ", 1, numOfUnallocatedConferences);
 		
 		Conference selectedConference = committeeAllocationService.getUnallocatedConferenceByIndex(conferenceNumber - 1);
 		

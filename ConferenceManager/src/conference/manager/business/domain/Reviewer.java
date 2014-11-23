@@ -2,7 +2,6 @@ package conference.manager.business.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 
 public class Reviewer extends Researcher implements Comparable<Reviewer> {
 
@@ -34,13 +33,6 @@ public class Reviewer extends Researcher implements Comparable<Reviewer> {
 				return true;
 		}
 		return false;
-	}
-
-	private boolean hasPaperToReviewInConference(Conference conference) {
-		List<Paper> unallocatedPapers = conference.getUnallocatedPapers();
-		boolean stillPapersUnallocated = !unallocatedPapers.isEmpty();
-		
-		return stillPapersUnallocated;
 	}
 	
 	public List<Paper> getPapersToReview() {

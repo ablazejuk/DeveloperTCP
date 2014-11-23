@@ -10,7 +10,6 @@ import org.junit.Test;
 import conference.manager.business.CommitteeAllocationService;
 import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
-import conference.manager.business.domain.Reviewer;
 import conference.manager.data.Database;
 
 public class CommitteeAllocationServiceImplTest {

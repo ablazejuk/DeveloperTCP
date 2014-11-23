@@ -1,14 +1,10 @@
 package conference.manager.ui.text.command;
 
-import Exceptions.UnallocatedConferencesException;
-import Exceptions.UngradedPapersException;
-import conference.manager.ConferenceManager;
+
 import conference.manager.ui.text.ConferenceManagerTextUI;
 import conference.manager.ui.text.UIUtils;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
+
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +13,8 @@ import conference.manager.business.domain.Conference;
 import conference.manager.business.domain.Paper;
 import conference.manager.business.impl.PaperSelectionServiceImpl;
 import conference.manager.data.Database;
+import conference.manager.exceptions.AllocatedConferencesException;
+import conference.manager.exceptions.UngradedPapersException;
 
 public class SelectPapersCommand extends Command {
 
@@ -40,8 +38,9 @@ public class SelectPapersCommand extends Command {
 					.selectConference(conferenceHash);
 			this.showAcceptedandRejectedPapers(selectedConference);
 
-		} catch (UnallocatedConferencesException unallocatedConference) {
+		} catch (AllocatedConferencesException unallocatedConference) {
 			System.out.println(unallocatedConference);
+			
 		} catch (UngradedPapersException ungradedPaper) {
 			System.out.println(ungradedPaper);
 		}
@@ -64,9 +63,10 @@ public class SelectPapersCommand extends Command {
 		return conferenceHash;
 	}
 
-	private Hashtable<Integer, Conference> showConferences(
-			List<Conference> conferences)
-			throws UnallocatedConferencesException {
+
+	private Hashtable<Integer, Conference> showConferences (
+			List<Conference> conferences) throws AllocatedConferencesException {
+
 
 		List<Conference> lista_de_conferencias = new LinkedList<Conference>();
 
