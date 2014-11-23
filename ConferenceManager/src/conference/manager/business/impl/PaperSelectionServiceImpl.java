@@ -23,8 +23,12 @@ public class PaperSelectionServiceImpl implements PaperSelectionService {
 			throws AllocatedConferencesException {
 		List<Conference> conferencias;
 		conferencias = this.database.getAllocatedConferences();
-
-		return conferencias;
+		if(!conferencias.isEmpty()){
+			return conferencias;			
+		}else{
+			throw new AllocatedConferencesException();
+		}
+		
 
 	}
 
