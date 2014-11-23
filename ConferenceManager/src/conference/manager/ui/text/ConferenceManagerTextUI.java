@@ -138,8 +138,6 @@ public class ConferenceManagerTextUI extends ConferenceManagerUI {
 			System.out.println(paper.getTitle());
 		}
 	}
-
-
 	
 	public void printLog(String logFilePath) {
 		try {
