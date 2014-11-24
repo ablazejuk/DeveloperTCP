@@ -72,7 +72,6 @@ public class SelectPapersCommand extends Command {
 
 	private void showConferences(Hashtable<Integer, Conference> conferenceHash)
 			throws AllocatedConferencesException {
-
 		this.ConferenceManagerInterface.showConferences(conferenceHash);
 
 	}
@@ -84,6 +83,7 @@ public class SelectPapersCommand extends Command {
 		int selection = UIUtils.getInstance().readInteger(
 				"\nPlease select a conference", MINIMUM_HASH_VALUE,
 				conferenceHash.size());
+
 		selectedConference = conferenceHash.get(selection);
 		return selectedConference;
 
@@ -104,6 +104,7 @@ public class SelectPapersCommand extends Command {
 
 	private List<Conference> getConferences()
 			throws AllocatedConferencesException {
+
 		return this.paperSelectionServiceImpl.getConferences();
 	}
 
